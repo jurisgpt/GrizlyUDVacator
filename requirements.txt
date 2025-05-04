@@ -1,2 +1,6 @@
 DefectiveUDService==0.1.0
+flake8==7.2.0
+mccabe==0.7.0
+pycodestyle==2.13.0
+pyflakes==3.3.2
 PyYAML==6.0.2
