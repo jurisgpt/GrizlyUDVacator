@@ -17,6 +17,9 @@ __pycache__/
 *.pdf
 *.docx
 
+# Git sync logs
+logs/GitSyncStatusReport_*.log
+
 # Interview outputs
 cli/interview_results_*.txt
 cli/summary_*.md
