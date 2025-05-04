@@ -1,0 +1,92 @@
+metadata:
+  title: Motion to Vacate Default Judgment Interview
+  version: 0.1
+  jurisdiction: California
+  applicable_statutes:
+    - CCP § 473(b)
+    - CCP § 473.5
+    - CCP § 473(d)
+    - CCP § 918
+    - CCP § 1005
+
+questions:
+  - id: received_notice
+    type: boolean
+    prompt: "Did you receive a summons or legal papers before the landlord got a judgment against you?"
+    follow_up:
+      if_false:
+        flags:
+          - no_actual_notice
+        next: became_aware_date
+      if_true:
+        next: explain_why_no_response
+
+  - id: explain_why_no_response
+    type: text
+    prompt: "If you received court papers, why didn’t you go to court or file an answer?"
+    flags_from_text:
+      keywords:
+        - illness: "illness"
+        - work_conflict: "work"
+        - misunderstood: "misunderstood"
+        - relied_on_someone: "friend|helper|lawyer"
+        - emotional_state: "panic|depression|stress"
+    flags:
+      - excusable_neglect
+    next: judgment_date
+
+  - id: became_aware_date
+    type: date
+    prompt: "When did you first learn that a judgment had been entered against you?"
+    flags:
+      - discovery_date
+    next: judgment_date
+
+  - id: judgment_date
+    type: date
+    prompt: "What date was the judgment entered (if known)?"
+    flags:
+      - judgment_date
+    next: service_type
+
+  - id: service_type
+    type: choice
+    prompt: "How were you served with court papers?"
+    options:
+      - personally
+      - substitute (left with someone)
+      - posting and mailing
+      - not served at all
+    flags:
+      - service_type
+    next: address_at_time
+
+  - id: address_at_time
+    type: boolean
+    prompt: "Were you living at the address where the papers were allegedly served?"
+    follow_up:
+      if_false:
+        flags:
+          - wrong_address_service
+          - jurisdiction_defect
+      if_true:
+        flags:
+          - service_may_be_valid
+    next: declare_facts
+
+  - id: declare_facts
+    type: text
+    prompt: "Please explain any other facts that show you didn’t have a fair chance to respond or that the service was improper."
+    flags_from_text:
+      keywords:
+        - language_issue: "english|language"
+        - disability: "disability|medical"
+        - miscommunication: "wrong unit|wrong door|neighbor"
+    flags:
+      - supporting_facts
+    next: review_summary
+
+  - id: review_summary
+    type: summary
+    prompt: "Review your information. Based on your answers, we may proceed under CCP § 473(b), § 473.5, or § 473(d)."
+
