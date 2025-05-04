@@ -1,0 +1,16 @@
+[Your Honor],
+The tenant respectfully moves the Court under {{ statute_list }} based on the following:
+
+{% for statute, reasons in justification.items() %}
+• {{ statute }}:
+    {% for reason in reasons %}
+    - {{ reason }}
+    {% endfor %}
+{% endfor %}
+
+Facts:
+{{ facts }}
+
+Respectfully,
+Tenant
+

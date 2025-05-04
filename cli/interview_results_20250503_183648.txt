@@ -1,0 +1,17 @@
+DEFAULT JUDGMENT INTERVIEW RESULTS
+========================================
+
+ANSWERS:
+received_notice: False
+became_aware_date: 2025-01-01
+judgment_date: 2025-04-01
+service_type: substitute (left with someone)
+address_at_time: False
+
+FLAGS TRIGGERED:
+- discovery_date
+- judgment_date
+- jurisdiction_defect
+- no_actual_notice
+- service_type
+- wrong_address_service

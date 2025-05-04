@@ -245,47 +245,31 @@ def save_results(answers, flags, save_path=None):
         return False
 
 
+from backend.rules.rule_engine import evaluate_statutes
+from backend.generator.doc_filler import generate_motion
+
 def main():
-    """Main entry point for the application."""
-    # Default location for the YAML file
-    default_yaml_path = os.path.join(os.path.dirname(__file__), 'prompts', 'vacate_default.yaml')
-    
-    # Allow override via command line argument
-    if len(sys.argv) > 1:
-        yaml_path = sys.argv[1]
-    else:
-        yaml_path = default_yaml_path
-    
-    # Ensure directory exists
-    if not os.path.exists(os.path.dirname(yaml_path)):
-        os.makedirs(os.path.dirname(yaml_path))
-    
-    # Check if YAML file exists
+    yaml_path = os.path.join(os.path.dirname(__file__), 'prompts', 'vacate_default.yaml')
     if not os.path.exists(yaml_path):
-        print(f"⚠️ YAML file not found at: {yaml_path}")
-        print("Please make sure the file exists or specify a valid path.")
+        print(f"❌ Error: YAML file not found at {yaml_path}")
         sys.exit(1)
-    
-    # Load YAML and run interview
+
     yaml_data = load_yaml(yaml_path)
-    print("\n" + "="*50)
-    print("📋 DEFAULT JUDGMENT INTERVIEW SYSTEM")
-    print("="*50)
-    
-    if 'title' in yaml_data:
-        print(f"\n{yaml_data['title']}")
-    
-    if 'description' in yaml_data:
-        print(f"\n{yaml_data['description']}")
-    
+
     # Run the interview
     answers, flags = run_interview(yaml_data)
-    
-    # Ask if the user wants to save results
+
+    # Evaluate legal basis
+    result = evaluate_statutes(flags)
+
+    # Generate the motion document
+    generate_motion(answers, result)
+
+    # Ask if the user wants to save plain-text results
     save = input("\nSave results to file? [y/n]: ").strip().lower()
     if save in ['y', 'yes']:
         save_results(answers, flags)
-    
+
     print("\n👋 Thank you for using the Default Judgment Interview System.")
 
 
