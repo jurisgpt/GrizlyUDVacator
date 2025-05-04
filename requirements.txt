@@ -1,6 +1,16 @@
+babel==2.17.0
 DefectiveUDService==0.1.0
+docxcompose==1.4.0
+docxtpl==0.19.1
 flake8==7.2.0
+Jinja2==3.1.6
+lxml==5.4.0
+MarkupSafe==3.0.2
 mccabe==0.7.0
 pycodestyle==2.13.0
 pyflakes==3.3.2
+python-docx==1.1.2
 PyYAML==6.0.2
+setuptools==80.3.0
+six==1.17.0
+typing_extensions==4.13.2
