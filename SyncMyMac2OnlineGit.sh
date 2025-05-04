@@ -41,17 +41,17 @@ if ! git diff-index --quiet HEAD --; then
     exit 1
 fi
 
-log_message "" | tee -a "$LOG_FILE"
-log_message "🔄 Step 1: Fetching latest changes from remote..." | tee -a "$LOG_FILE"
-git fetch origin 2>&1 | tee -a "$LOG_FILE"
+echo ""
+echo "🔄 Step 1: Fetching latest changes from remote..."
+git fetch origin 2>&1
 
 # Get the commit hashes for comparison
 LOCAL=$(git rev-parse @)                 # Current local commit
 REMOTE=$(git rev-parse origin/main)     # Latest commit on GitHub
 BASE=$(git merge-base @ origin/main)    # Common ancestor of local and remote
 
-log_message "" | tee -a "$LOG_FILE"
-log_message "📊 Comparing local vs. GitHub..." | tee -a "$LOG_FILE"
+echo ""
+echo "📊 Comparing local vs. GitHub..."
 
 ################################################################################
 # SYNC LOGIC - What should we do based on local/remote state?
@@ -113,6 +113,3 @@ echo "💡 Tip: You can re-run this script anytime to re-check sync status."
 echo ""
 echo "📝 Sync activity has been logged to: $LOG_FILE"
 echo ""
-
-
-
