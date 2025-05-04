@@ -1,0 +1,96 @@
+[MASTER]
+
+# Add any paths that should be added to the Python path for your project
+pythonpath=.
+
+[MESSAGES CONTROL]
+
+# Enable the message, report, category or checker with the given id(s).
+# You can either give multiple identifiers separated by comma (,) or put this option
+# multiple times (only on the command line, not in the config file where it should
+# appear only once).
+#enable=missing-docstring,invalid-name
+
+# Disable the message, report, category or checker with the given id(s).
+# You can either give multiple identifiers separated by comma (,) or put this option
+# multiple times (only on the command line, not in the config file where it should
+# appear only once).
+#disable=too-many-lines,too-many-arguments,too-many-locals,too-many-branches,too-many-statements,too-many-return-statements,too-many-instance-attributes,too-many-public-methods
+
+[FORMAT]
+
+# Maximum number of characters on a single line.
+max-line-length=100
+
+# Maximum number of characters on a single import line.
+max-import-line-length=100
+
+[BASIC]
+
+# Good variable names which should always be accepted, separated by a comma.
+#good-names=i,j,k,ex,Run,_,id
+
+# Bad variable names which should always be refused, separated by a comma.
+#bad-names=foo,bar,baz,toto,tutu,tata
+
+[TYPECHECK]
+
+# List of members which are set dynamically and missed by pylint inference
+# system, and so shouldn't trigger E1101 when accessed.
+# Python regular expressions (see [https://docs.python.org/library/re.html])
+# are accepted.
+#generated-members=.*
+
+[DESIGN]
+
+# Maximum number of arguments for function / method.
+max-args=5
+
+# Maximum number of locals for function / method body.
+max-locals=15
+
+# Maximum number of return / yield statements in function / method body.
+max-returns=6
+
+# Maximum number of branches for function / method body.
+max-branches=12
+
+# Maximum number of statements in function / method body.
+max-statements=50
+
+# Maximum number of parents for a class (see R0901).
+max-parents=7
+
+# Maximum number of methods in a class (see R0904).
+max-attributes=7
+
+# Maximum number of public methods for a class (see R0904).
+max-public-methods=20
+
+[REPORTS]
+
+# Put messages in a separate file for each module / package specified on the
+# command line instead of printing them on stdout.
+files-output=yes
+
+# Include message's id in output
+include-ids=yes
+
+# Add a section with the raw number of messages in the reports.
+#show-report=y
+
+# Add a section listing all messages by module in the reports.
+#show-modules=y
+
+# Add a section listing all messages by category in the reports.
+#show-categories=y
+
+# Use text colors in the output.
+colorized=yes
+
+# Add a section listing all messages in the reports.
+#show-messages=y
+
+# Set the confidence level under which messages are displayed.
+# Valid values are HIGH, NORMAL, LOW, UNDEFINED.
+#confidence=HIGH

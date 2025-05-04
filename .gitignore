@@ -44,4 +44,7 @@ dist/
 .envrc
 pip-log.txt
 
+# Documentation build directory
+docs/_build/
+
 
