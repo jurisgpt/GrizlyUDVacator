@@ -2,21 +2,21 @@
 
 setup:
 	@echo "📦 Setting up environment..."
-	python3 -m venv .venv && . .venv/bin/activate && pip install -r requirements.txt
+	PYTHONPATH=$(PWD) python3 -m venv .venv && . .venv/bin/activate && pip install -r requirements.txt
 	@echo "📦 Installing package in development mode..."
-	.venv/bin/pip install -e .
+	PYTHONPATH=$(PWD) .venv/bin/pip install -e .
 
 interview:
 	@echo "🎤 Running CLI interview..."
-	.venv/bin/python cli/main.py
+	PYTHONPATH=$(PWD) .venv/bin/python cli/main.py
 
 lint:
 	@echo "🔍 Linting code..."
-	.venv/bin/flake8 cli backend
+	PYTHONPATH=$(PWD) .venv/bin/flake8 cli backend
 
 test:
 	@echo "🧪 Running tests..."
-	.venv/bin/pytest tests/ -v
+	PYTHONPATH=$(PWD) .venv/bin/pytest tests/ -v
 
 clean:
 	@echo "🧹 Cleaning build files and interview logs..."

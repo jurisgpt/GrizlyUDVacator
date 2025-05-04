@@ -51,14 +51,16 @@ questions:
 
   - id: service_type
     type: choice
-    prompt: "How were you served with court papers?"
+    prompt: "How were you served with the summons?"
     options:
-      - personally
+      - "Personal service"
+      - "Substituted service"
+      - "Publication"
+      - "Other"
       - substitute (left with someone)
       - posting and mailing
-      - not served at all
     flags:
-      - service_type
+      - service_method
     next: address_at_time
 
   - id: address_at_time
@@ -88,5 +90,5 @@ questions:
 
   - id: review_summary
     type: summary
-    prompt: "Review your information. Based on your answers, we may proceed under CCP § 473(b), § 473.5, or § 473(d)."
-
+    prompt: "Thank you for using the Default Judgment Interview System. Based on your answers, we may proceed under CCP § 473(b), § 473.5, or § 473(d)."
+    next: null
