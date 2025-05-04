@@ -1,0 +1,15 @@
+cat <<EOF > .vscode/settings.json
+{
+  "python.pythonPath": "\${workspaceFolder}/.venv/bin/python",
+  "python.formatting.provider": "black",
+  "editor.formatOnSave": true,
+  "files.exclude": {
+    "**/__pycache__": true,
+    "**/*.pyc": true,
+    "**/.venv": true
+  },
+  "python.linting.enabled": true,
+  "python.linting.flake8Enabled": true
+}
+EOF
+

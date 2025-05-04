@@ -1,0 +1,16 @@
+cat <<EOF > .vscode/launch.json
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Run CLI Interview",
+      "type": "python",
+      "request": "launch",
+      "program": "\${workspaceFolder}/cli/main.py",
+      "console": "integratedTerminal"
+    }
+  ]
+}
+EOF
+
+
