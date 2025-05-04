@@ -4,10 +4,11 @@
 # 🤖 SyncMyMac2OnlineGit.sh
 # 
 # This script keeps your Mac's local Git repo in perfect sync with GitHub.
-# It automatically detects whether:
-#   - You are ahead (need to push)
-#   - You are behind (need to pull)
-#   - You and GitHub have diverged (need to merge manually)
+# It automatically handles:
+#   - Pulling changes with rebase
+#   - Pushing your commits
+#   - Resolving divergence with rebase
+#   - Checking for uncommitted changes
 #
 # Usage: Run this from your repo directory:
 #   ./SyncMyMac2OnlineGit.sh
@@ -15,13 +16,21 @@
 # Requirements: You must already have Git set up and a remote called 'origin'
 ################################################################################
 
+# Check for uncommitted changes first
+echo ""
+echo "🔍 Checking for uncommitted changes..."
+if ! git diff-index --quiet HEAD --; then
+    echo "⚠️ Uncommitted changes detected. Please commit or stash before syncing."
+    exit 1
+fi
+
 echo ""
 echo "🚀 Starting SyncMyMac2OnlineGit"
 echo "📁 Working in directory: $(pwd)"
 echo "⏰ Current time: $(date)"
-echo "🔍 Step 1: Checking Git status with remote 'origin'..."
 
-# Update your local knowledge of the GitHub remote
+echo ""
+echo "🔄 Step 1: Fetching latest changes from remote..."
 git fetch origin
 
 # Get the commit hashes for comparison
@@ -47,8 +56,8 @@ elif [ "$LOCAL" = "$BASE" ]; then
     echo "📄 These commits exist on GitHub that you don't have:"
     git log --oneline $LOCAL..$REMOTE
     echo ""
-    echo "🔄 Pulling changes from GitHub into your Mac..."
-    git pull origin main --no-rebase
+    echo "🔄 Pulling changes with rebase..."
+    git pull --rebase origin main
 
 # Case 3: Local is ahead (you have unpushed commits)
 elif [ "$REMOTE" = "$BASE" ]; then
@@ -61,22 +70,33 @@ elif [ "$REMOTE" = "$BASE" ]; then
 
 # Case 4: Local and remote have diverged — both changed
 else
-    echo "⚠️  Divergence detected! Both your Mac and GitHub have unique commits."
-    echo "🧭 You need to merge the histories manually."
-    echo ""
+    echo "🔄 Your Mac and GitHub have diverged."
     echo "📄 Your local-only commits:"
     git log --oneline $BASE..$LOCAL
     echo ""
     echo "🌐 GitHub-only commits:"
     git log --oneline $BASE..$REMOTE
     echo ""
-    echo "🛠️  To fix this, run:"
-    echo "    git pull origin main --no-rebase"
-    echo "  Then resolve any merge conflicts, commit the result, and run this script again."
+    echo "🔄 Attempting to rebase your changes on top of GitHub..."
+    git pull --rebase origin main
+    
+    # Check if rebase was successful
+    if [ $? -eq 0 ]; then
+        echo ""
+        echo "✅ Rebase successful! Pushing changes..."
+        git push origin main
+    else
+        echo ""
+        echo "⚠️ Rebase failed. Please resolve conflicts manually and run:"
+        echo "    git rebase --continue"
+        echo "  Then run this script again."
+        exit 1
+    fi
 fi
 
 echo ""
 echo "✅ SyncMyMac2OnlineGit finished."
+echo "🌟 Your repository is now in sync with GitHub."
 echo "💡 Tip: You can re-run this script anytime to re-check sync status."
 echo ""
 
