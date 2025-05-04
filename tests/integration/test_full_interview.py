@@ -29,7 +29,12 @@ def test_full_interview_flow():
                     "if_false": {"flags": ["no_response"], "next": "end"},
                 },
             },
-            {"id": "end", "type": "summary"},
+            {
+                "id": "end",
+                "prompt": "Interview Summary",
+                "type": "summary",
+                "required": False,
+            },
         ]
     }
 
@@ -75,7 +80,12 @@ def test_interview_with_multiple_questions():
                 "type": "multiple_choice",
                 "options": ["Option A", "Option B", "Option C"],
             },
-            {"id": "end", "type": "summary"},
+            {
+                "id": "end",
+                "prompt": "Interview Summary",
+                "type": "summary",
+                "required": False,
+            },
         ]
     }
 
@@ -114,7 +124,12 @@ def test_interview_with_invalid_input_handling():
                 "type": "multiple_choice",
                 "options": ["Option A", "Option B", "Option C"],
             },
-            {"id": "end", "type": "summary"},
+            {
+                "id": "end",
+                "prompt": "Interview Summary",
+                "type": "summary",
+                "required": False,
+            },
         ]
     }
 

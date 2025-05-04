@@ -1,0 +1,280 @@
+[
+  {
+    "status": "SAT",
+    "z3_model": "[urgent = True,\n critical = True,\n current = 1746360158,\n answer = 1745496158]",
+    "z3_constraints": [
+      "Implies(ToReal(current) > 873050479397941/500000, urgent)",
+      "Implies(ToReal(current) > 873352879397941/500000, warning)",
+      "Implies(ToReal(current) > 874044079397941/500000, info)",
+      "Implies(ToReal(current) > 872964079397941/500000, critical)",
+      "Implies(ToReal(current) > 873655279397941/500000, important)"
+    ],
+    "triggered_flags": [
+      "urgent",
+      "critical"
+    ],
+    "explanation": [
+      "Flag 'urgent' triggered (current: 1746360158.795882, threshold: 1746100958.795882)",
+      "Flag 'warning' not triggered (current: 1746360158.795882, threshold: 1746705758.795882)",
+      "Flag 'info' not triggered (current: 1746360158.795882, threshold: 1748088158.795882)",
+      "Flag 'critical' triggered (current: 1746360158.795882, threshold: 1745928158.795882)",
+      "Flag 'important' not triggered (current: 1746360158.795882, threshold: 1747310558.795882)"
+    ],
+    "current_date": "2025-05-04T05:02:38.795882",
+    "answer_date": "2025-04-24T05:02:38.795882",
+    "flags": {
+      "urgent": 7,
+      "warning": 14,
+      "info": 30,
+      "critical": 5,
+      "important": 21
+    },
+    "timestamp": "2025-05-04T05:02:38.813028"
+  },
+  {
+    "status": "SAT",
+    "z3_model": "[current = 1746360158, answer = 1746273758]",
+    "z3_constraints": [
+      "Implies(ToReal(current) > 17468785587959/10000, urgent)",
+      "Implies(ToReal(current) > 17474833587959/10000, warning)",
+      "Implies(ToReal(current) > 17488657587959/10000, info)",
+      "Implies(ToReal(current) > 17467057587959/10000, critical)"
+    ],
+    "triggered_flags": [],
+    "explanation": [
+      "Flag 'urgent' not triggered (current: 1746360158.7959, threshold: 1746878558.7959)",
+      "Flag 'warning' not triggered (current: 1746360158.7959, threshold: 1747483358.7959)",
+      "Flag 'info' not triggered (current: 1746360158.7959, threshold: 1748865758.7959)",
+      "Flag 'critical' not triggered (current: 1746360158.7959, threshold: 1746705758.7959)"
+    ],
+    "current_date": "2025-05-04T05:02:38.795900",
+    "answer_date": "2025-05-03T05:02:38.795900",
+    "flags": {
+      "urgent": 7,
+      "warning": 14,
+      "info": 30,
+      "critical": 5
+    },
+    "timestamp": "2025-05-04T05:02:38.817686"
+  },
+  {
+    "status": "SAT",
+    "z3_model": "[critical = True, current = 1746360158, answer = 1745755358]",
+    "z3_constraints": [
+      "Implies(ToReal(current) > 1746360158795903/1000000, urgent)",
+      "Implies(ToReal(current) > 1746187358795903/1000000,\n        critical)"
+    ],
+    "triggered_flags": [
+      "critical"
+    ],
+    "explanation": [
+      "Flag 'urgent' not triggered (current: 1746360158.795903, threshold: 1746360158.795903)",
+      "Flag 'critical' triggered (current: 1746360158.795903, threshold: 1746187358.795903)"
+    ],
+    "current_date": "2025-05-04T05:02:38.795903",
+    "answer_date": "2025-04-27T05:02:38.795903",
+    "flags": {
+      "urgent": 7,
+      "critical": 5
+    },
+    "timestamp": "2025-05-04T05:02:38.819401"
+  },
+  {
+    "status": "SAT",
+    "z3_model": "[urgent = True,\n warning = True,\n critical = True,\n current = 1746360158,\n answer = 1745064158]",
+    "z3_constraints": [
+      "Implies(ToReal(current) > 349133791759181/200000, urgent)",
+      "Implies(ToReal(current) > 349254751759181/200000, warning)",
+      "Implies(ToReal(current) > 349531231759181/200000, info)",
+      "Implies(ToReal(current) > 349099231759181/200000, critical)",
+      "Implies(ToReal(current) > 349375711759181/200000, important)",
+      "Implies(ToReal(current) > 350049631759181/200000, notice)"
+    ],
+    "triggered_flags": [
+      "urgent",
+      "warning",
+      "critical"
+    ],
+    "explanation": [
+      "Flag 'urgent' triggered (current: 1746360158.795905, threshold: 1745668958.795905)",
+      "Flag 'warning' triggered (current: 1746360158.795905, threshold: 1746273758.795905)",
+      "Flag 'info' not triggered (current: 1746360158.795905, threshold: 1747656158.795905)",
+      "Flag 'critical' triggered (current: 1746360158.795905, threshold: 1745496158.795905)",
+      "Flag 'important' not triggered (current: 1746360158.795905, threshold: 1746878558.795905)",
+      "Flag 'notice' not triggered (current: 1746360158.795905, threshold: 1750248158.795905)"
+    ],
+    "current_date": "2025-05-04T05:02:38.795905",
+    "answer_date": "2025-04-19T05:02:38.795905",
+    "flags": {
+      "urgent": 7,
+      "warning": 14,
+      "info": 30,
+      "critical": 5,
+      "important": 21,
+      "notice": 60
+    },
+    "timestamp": "2025-05-04T05:02:38.822730"
+  },
+  {
+    "status": "SAT",
+    "z3_model": "[warning = True,\n critical = True,\n current = 1746360158,\n info = True,\n important = True,\n emergency = True,\n notice = True,\n answer = 1740747758,\n urgent = True]",
+    "z3_constraints": [
+      "Implies(ToReal(current) > 174135255879591/100000, urgent)",
+      "Implies(ToReal(current) > 174195735879591/100000, warning)",
+      "Implies(ToReal(current) > 174333975879591/100000, info)",
+      "Implies(ToReal(current) > 174117975879591/100000, critical)",
+      "Implies(ToReal(current) > 174256215879591/100000, important)",
+      "Implies(ToReal(current) > 174593175879591/100000, notice)",
+      "Implies(ToReal(current) > 174100695879591/100000, emergency)"
+    ],
+    "triggered_flags": [
+      "urgent",
+      "warning",
+      "info",
+      "critical",
+      "important",
+      "notice",
+      "emergency"
+    ],
+    "explanation": [
+      "Flag 'urgent' triggered (current: 1746360158.79591, threshold: 1741352558.79591)",
+      "Flag 'warning' triggered (current: 1746360158.79591, threshold: 1741957358.79591)",
+      "Flag 'info' triggered (current: 1746360158.79591, threshold: 1743339758.79591)",
+      "Flag 'critical' triggered (current: 1746360158.79591, threshold: 1741179758.79591)",
+      "Flag 'important' triggered (current: 1746360158.79591, threshold: 1742562158.79591)",
+      "Flag 'notice' triggered (current: 1746360158.79591, threshold: 1745931758.79591)",
+      "Flag 'emergency' triggered (current: 1746360158.79591, threshold: 1741006958.79591)"
+    ],
+    "current_date": "2025-05-04T05:02:38.795910",
+    "answer_date": "2025-02-28T05:02:38.795910",
+    "flags": {
+      "urgent": 7,
+      "warning": 14,
+      "info": 30,
+      "critical": 5,
+      "important": 21,
+      "notice": 60,
+      "emergency": 3
+    },
+    "timestamp": "2025-05-04T05:02:38.827255"
+  },
+  {
+    "status": "SAT",
+    "z3_model": "[current = 1746360158, answer = 1746100958]",
+    "z3_constraints": [
+      "Implies(ToReal(current) > 1746705758795911/1000000, urgent)",
+      "Implies(ToReal(current) > 1747310558795911/1000000, warning)",
+      "Implies(ToReal(current) > 1748692958795911/1000000, info)",
+      "Implies(ToReal(current) > 1746532958795911/1000000,\n        critical)",
+      "Implies(ToReal(current) > 1747915358795911/1000000,\n        important)",
+      "Implies(ToReal(current) > 1751284958795911/1000000, notice)",
+      "Implies(ToReal(current) > 1746360158795911/1000000,\n        emergency)"
+    ],
+    "triggered_flags": [],
+    "explanation": [
+      "Flag 'urgent' not triggered (current: 1746360158.795911, threshold: 1746705758.795911)",
+      "Flag 'warning' not triggered (current: 1746360158.795911, threshold: 1747310558.795911)",
+      "Flag 'info' not triggered (current: 1746360158.795911, threshold: 1748692958.795911)",
+      "Flag 'critical' not triggered (current: 1746360158.795911, threshold: 1746532958.795911)",
+      "Flag 'important' not triggered (current: 1746360158.795911, threshold: 1747915358.795911)",
+      "Flag 'notice' not triggered (current: 1746360158.795911, threshold: 1751284958.795911)",
+      "Flag 'emergency' not triggered (current: 1746360158.795911, threshold: 1746360158.795911)"
+    ],
+    "current_date": "2025-05-04T05:02:38.795911",
+    "answer_date": "2025-05-01T05:02:38.795911",
+    "flags": {
+      "urgent": 7,
+      "warning": 14,
+      "info": 30,
+      "critical": 5,
+      "important": 21,
+      "notice": 60,
+      "emergency": 3
+    },
+    "timestamp": "2025-05-04T05:02:38.830628"
+  },
+  {
+    "status": "SAT",
+    "z3_model": "[critical = True,\n current = 1746360158,\n emergency = True,\n answer = 1745755358]",
+    "z3_constraints": [
+      "Implies(ToReal(current) > 1746360158795913/1000000, urgent)",
+      "Implies(ToReal(current) > 1746964958795913/1000000, warning)",
+      "Implies(ToReal(current) > 1748347358795913/1000000, info)",
+      "Implies(ToReal(current) > 1746187358795913/1000000,\n        critical)",
+      "Implies(ToReal(current) > 1747569758795913/1000000,\n        important)",
+      "Implies(ToReal(current) > 1750939358795913/1000000, notice)",
+      "Implies(ToReal(current) > 1746014558795913/1000000,\n        emergency)"
+    ],
+    "triggered_flags": [
+      "critical",
+      "emergency"
+    ],
+    "explanation": [
+      "Flag 'urgent' not triggered (current: 1746360158.795913, threshold: 1746360158.795913)",
+      "Flag 'warning' not triggered (current: 1746360158.795913, threshold: 1746964958.795913)",
+      "Flag 'info' not triggered (current: 1746360158.795913, threshold: 1748347358.795913)",
+      "Flag 'critical' triggered (current: 1746360158.795913, threshold: 1746187358.795913)",
+      "Flag 'important' not triggered (current: 1746360158.795913, threshold: 1747569758.795913)",
+      "Flag 'notice' not triggered (current: 1746360158.795913, threshold: 1750939358.795913)",
+      "Flag 'emergency' triggered (current: 1746360158.795913, threshold: 1746014558.795913)"
+    ],
+    "current_date": "2025-05-04T05:02:38.795913",
+    "answer_date": "2025-04-27T05:02:38.795913",
+    "flags": {
+      "urgent": 7,
+      "warning": 14,
+      "info": 30,
+      "critical": 5,
+      "important": 21,
+      "notice": 60,
+      "emergency": 3
+    },
+    "timestamp": "2025-05-04T05:02:38.834667"
+  },
+  {
+    "status": "SAT",
+    "z3_model": "[warning = True,\n critical = True,\n current = 1746360158,\n info = True,\n important = True,\n emergency = True,\n notice = True,\n answer = 1738587758,\n urgent = True]",
+    "z3_constraints": [
+      "Implies(ToReal(current) > 347838511759183/200000, urgent)",
+      "Implies(ToReal(current) > 347959471759183/200000, warning)",
+      "Implies(ToReal(current) > 348235951759183/200000, info)",
+      "Implies(ToReal(current) > 347803951759183/200000, critical)",
+      "Implies(ToReal(current) > 348080431759183/200000, important)",
+      "Implies(ToReal(current) > 348754351759183/200000, notice)",
+      "Implies(ToReal(current) > 347769391759183/200000, emergency)",
+      "Implies(ToReal(current) > 349272751759183/200000, long_term)"
+    ],
+    "triggered_flags": [
+      "urgent",
+      "warning",
+      "info",
+      "critical",
+      "important",
+      "notice",
+      "emergency"
+    ],
+    "explanation": [
+      "Flag 'urgent' triggered (current: 1746360158.795915, threshold: 1739192558.795915)",
+      "Flag 'warning' triggered (current: 1746360158.795915, threshold: 1739797358.795915)",
+      "Flag 'info' triggered (current: 1746360158.795915, threshold: 1741179758.795915)",
+      "Flag 'critical' triggered (current: 1746360158.795915, threshold: 1739019758.795915)",
+      "Flag 'important' triggered (current: 1746360158.795915, threshold: 1740402158.795915)",
+      "Flag 'notice' triggered (current: 1746360158.795915, threshold: 1743771758.795915)",
+      "Flag 'emergency' triggered (current: 1746360158.795915, threshold: 1738846958.795915)",
+      "Flag 'long_term' not triggered (current: 1746360158.795915, threshold: 1746363758.795915)"
+    ],
+    "current_date": "2025-05-04T05:02:38.795915",
+    "answer_date": "2025-02-03T05:02:38.795915",
+    "flags": {
+      "urgent": 7,
+      "warning": 14,
+      "info": 30,
+      "critical": 5,
+      "important": 21,
+      "notice": 60,
+      "emergency": 3,
+      "long_term": 90
+    },
+    "timestamp": "2025-05-04T05:02:38.838735"
+  }
+]

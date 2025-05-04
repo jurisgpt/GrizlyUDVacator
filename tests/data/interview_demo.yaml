@@ -1,4 +1,6 @@
 questions:
+  # Section 1: Initial Response Status
+  # Rule 1.1: Determine if user responded to court papers
   - id: intro
     prompt: "Did you respond to the court papers?"
     type: boolean
@@ -10,6 +12,7 @@ questions:
         flags: ["no_response", "intro"]
         next: end
 
+  # Section 2: Completion
   - id: end
     prompt: "Interview complete. Thank you!"
     type: summary

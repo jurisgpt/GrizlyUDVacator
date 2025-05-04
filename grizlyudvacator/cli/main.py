@@ -115,71 +115,63 @@ def _run_interview_impl(io: IOInterface, yaml_data):
     """Internal implementation of run_interview that uses IO interface."""
     # Initialize interview engine
     engine = InterviewEngine(yaml_data)
+    answers = {}
+    flags = []
     current_id = engine.current_id
 
-    # Main interview loop
     while current_id:
-        q = engine.get_question(current_id)
-        ans = _ask_question_impl(io, q)
-        current_id = engine.process_question(current_id, ans)
+        question = engine.get_question(current_id)
+        ans = _ask_question_impl(io, question)
+        answers[current_id] = ans
 
-    # Get results
-    results = engine.get_results()
-    answers = results["answers"]
-    flags = results["flags"]
-
-    # Print summary
-    io.write_output("\n" + "=" * 50)
-    io.write_output("📊 INTERVIEW SUMMARY")
-    io.write_output("=" * 50)
-
-    io.write_output("\n🧾 Collected Answers:")
-    for k, v in answers.items():
-        if isinstance(v, list):
-            io.write_output(f" - {k}:")
-            for item in v:
-                io.write_output(f"   * {item}")
+        # Process flags and next question
+        if question.follow_up:
+            if isinstance(ans, bool):
+                branch = "if_true" if ans else "if_false"
+                next_info = question.follow_up.get(branch, {})
+                flags.extend(next_info.get("flags", []))
+                current_id = next_info.get("next", question.get("next"))
+            elif isinstance(ans, str) and "options" in question.follow_up:
+                next_info = question.follow_up["options"].get(ans, {})
+                flags.extend(next_info.get("flags", []))
+                current_id = next_info.get("next", question.get("next"))
+            else:
+                current_id = question.get("next")
         else:
-            io.write_output(f" - {k}: {v}")
+            current_id = question.get("next")
 
-    io.write_output("\n🚩 Flags Triggered:")
-    for f in sorted(set(flags)):
-        io.write_output(f" - {f}")
+        # Handle text-based flags
+        if question.flags_from_text and isinstance(ans, str):
+            # Get the keywords section
+            keywords = question.flags_from_text.get("keywords", [])
+            if isinstance(keywords, list):
+                # If it's a list, convert to dict format
+                keywords_dict = {}
+                for item in keywords:
+                    if isinstance(item, dict) and len(item) == 1:
+                        key = next(iter(item))
+                        value = item[key]
+                        keywords_dict[key] = value
+                keywords = keywords_dict
 
-    # Generate recommendation based on flags
-    io.write_output("\n📝 Initial Assessment:")
-    if "improper_service" in flags:
-        io.write_output(
-            " ✅ Potential grounds for motion based on improper service (CCP § 473.5)"
-        )
-    if "mistake_neglect" in flags:
-        io.write_output(
-            " ✅ Potential grounds based on mistake/excusable neglect (CCP § 473(b))"
-        )
-    if "fraud_misconduct" in flags:
-        io.write_output(" ✅ Potential grounds based on fraud/misconduct (CCP § 473(d))")
-    if "void_judgment" in flags:
-        io.write_output(" ✅ Potential void judgment argument available")
-    if "time_barred" in flags:
-        io.write_output(" ⚠️ Motion may be time-barred - careful review needed")
-    if "urgent_lockout" in flags:
-        io.write_output(" ⚠️ URGENT: Lockout imminent - consider ex parte application")
+            # Now process the keywords
+            for label, pattern in keywords.items():
+                if re.search(rf"\b{pattern}\b", ans, re.IGNORECASE):
+                    flags.append(label)
 
-    # Handle follow-up questions
-    if "follow_up" in q:
-        if isinstance(ans, bool):
-            branch = "if_true" if ans else "if_false"
-            next_info = q["follow_up"].get(branch, {})
-            flags.extend(next_info.get("flags", []))
-            current_id = next_info.get("next", q.get("next"))
-        elif isinstance(ans, str) and "options" in q["follow_up"]:
-            next_info = q["follow_up"]["options"].get(ans, {})
-            flags.extend(next_info.get("flags", []))
-            current_id = next_info.get("next", q.get("next"))
-        else:
-            current_id = q.get("next")
-    else:
-        current_id = q.get("next")
+            # Calculate time-based flags if dates are involved
+            if question.type == "date" and question.date_flags and ans:
+                try:
+                    date_obj = datetime.datetime.strptime(ans, "%Y-%m-%d").date()
+                    today = datetime.date.today()
+                    days_diff = (today - date_obj).days
+
+                    for flag, threshold in question.date_flags.items():
+                        if days_diff >= threshold:
+                            flags.append(flag)
+                except ValueError:
+                    # Skip if date is invalid
+                    pass
 
     # Generate recommendation based on flags
     io.write_output("\n📝 Initial Assessment:")
@@ -213,57 +205,7 @@ def _run_interview_impl(io: IOInterface, yaml_data):
             " ⚠️ No clear grounds for relief identified - further review needed"
         )
 
-    # Handle text-based flags
-    if "flags_from_text" in q and isinstance(ans, str):
-        # Get the keywords section
-        keywords = q["flags_from_text"].get("keywords", [])
-        if isinstance(keywords, list):
-            # If it's a list, convert to dict format
-            keywords_dict = {}
-            for item in keywords:
-                if isinstance(item, dict) and len(item) == 1:
-                    key = next(iter(item))
-                    value = item[key]
-                    keywords_dict[key] = value
-            keywords = keywords_dict
-
-        # Now process the keywords
-        for label, pattern in keywords.items():
-            if re.search(rf"\b{pattern}\b", ans, re.IGNORECASE):
-                flags.append(label)
-
-        # Calculate time-based flags if dates are involved
-        if q["type"] == "date" and "date_flags" in q and ans:
-            try:
-                date_obj = datetime.datetime.strptime(ans, "%Y-%m-%d").date()
-                today = datetime.date.today()
-                days_diff = (today - date_obj).days
-
-                for flag, threshold in q["date_flags"].items():
-                    if days_diff >= threshold:
-                        flags.append(flag)
-            except ValueError:
-                # Skip if date is invalid
-                pass
-
-        # Determine next step
-        if "follow_up" in q:
-            # Handle follow-up questions
-            if isinstance(ans, bool):
-                branch = "if_true" if ans else "if_false"
-                next_info = q["follow_up"].get(branch, {})
-                flags.extend(next_info.get("flags", []))
-                current_id = next_info.get("next", q.get("next"))
-            elif isinstance(ans, str) and "options" in q["follow_up"]:
-                next_info = q["follow_up"]["options"].get(ans, {})
-                flags.extend(next_info.get("flags", []))
-                current_id = next_info.get("next", q.get("next"))
-            else:
-                current_id = q.get("next")
-        else:
-            # Store answer and move to next question
-            answers[current_id] = ans
-            current_id = q.get("next")
+    return answers, flags
 
     return answers
 
@@ -299,27 +241,47 @@ def save_results(
 
     # Save to file
     io.write_file(save_path, result_text)
-    io.write_output(f"Results saved to {save_path}")
     return True
 
 
 class InterviewRunner:
-    """Class to manage interview execution."""
+    """Class to manage interview execution.
+
+    Attributes:
+        yaml_data (Dict[str, Any]): YAML data containing interview questions and logic
+        io (Optional[IOInterface]): Optional IO interface for user interaction
+        engine (InterviewEngine): Interview engine instance
+    """
 
     def __init__(self, yaml_data: dict[str, Any], io: IOInterface | None = None):
-        """Initialize with YAML data and optional IO interface."""
+        """Initialize with YAML data and optional IO interface.
+
+        Args:
+            yaml_data (Dict[str, Any]): YAML data containing interview questions and logic
+            io (Optional[IOInterface]): Optional IO interface for user interaction
+        """
         self.yaml_data = yaml_data
         self.io = io or ConsoleIO()
         self.engine = InterviewEngine(yaml_data)
 
     def run(self) -> dict[str, Any]:
-        """Run the interview and return results."""
-        current_id = self.engine.current_id
+        """Run the interview and return results.
 
-        while current_id:
+        Returns:
+            Dict[str, Any]: Dictionary containing user answers and flags
+        """
+        current_id = self.yaml_data.get(
+            "start_id", self.yaml_data["questions"][0]["id"]
+        )
+
+        while True:
             question = self.engine.get_question(current_id)
-            answer = self._ask_question(question)
-            current_id = self.engine.process_answer(current_id, answer)
+            if not question:
+                break
+
+            current_id = self._ask_question(question)
+            if current_id is None:
+                break
 
         answers = self.engine.get_answers()
         flags = self.engine.get_flags()
@@ -327,7 +289,14 @@ class InterviewRunner:
         return answers, flags
 
     def _ask_question(self, question: dict[str, Any]) -> Any:
-        """Ask a question and return the answer."""
+        """Ask a question and return the answer.
+
+        Args:
+            question (Dict[str, Any]): Dictionary containing question details
+
+        Returns:
+            The user's answer to the question or None for summary questions
+        """
         while True:
             try:
                 if "prompt" in question:
