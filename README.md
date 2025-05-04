@@ -1,6 +1,6 @@
 # 📚  GrizlyUDVacator - Attorney Decision Aid 
 
-GrizlyUDVacator automates motion practice under California law to help tenants set aside default judgments in unlawful detainer (eviction) actions. This document catalogs the California statutes, case law, and judicial forms embedded in the project’s rule engine and document generator.
+**GrizlyUDVacator** automates case intake, case triage  through motion practice under California law for tenants seeking  seeting aside default judgments in unlawful detainer (eviction) actions. This document catalogs the California statutes, case law, and judicial forms embedded in the project’s rule engine and document generator.
 
 ---
 
