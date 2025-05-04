@@ -12,4 +12,3 @@ cat <<EOF > .vscode/settings.json
   "python.linting.flake8Enabled": true
 }
 EOF
-

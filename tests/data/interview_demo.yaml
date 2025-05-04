@@ -1,0 +1,15 @@
+questions:
+  - id: intro
+    prompt: "Did you respond to the court papers?"
+    type: boolean
+    follow_up:
+      if_true:
+        flags: ["responded"]
+        next: end
+      if_false:
+        flags: ["no_response", "intro"]
+        next: end
+
+  - id: end
+    prompt: "Interview complete. Thank you!"
+    type: summary

@@ -1,4 +1,4 @@
-.PHONY: setup interview lint clean sync test analyze docs coverage
+.PHONY: setup interview lint clean sync test analyze docs coverage smoke
 
 # Setup environment
 setup:
@@ -25,6 +25,11 @@ lint:
 	PYTHONPATH=$(PWD) .venv/bin/black --check cli backend
 	@echo "🔍 Isort..."
 	PYTHONPATH=$(PWD) .venv/bin/isort --check cli backend
+
+smoke:
+	@echo "🔥 Running smoke tests with coverage..."
+	PYTHONPATH=$(PWD) .venv/bin/coverage run --source=grizlyudvacator -m pytest tests/smoke/ -v
+	PYTHONPATH=$(PWD) .venv/bin/coverage report -m --include=grizlyudvacator/*
 
 test:
 	@echo "🧪 Running tests..."
@@ -65,5 +70,3 @@ clean:
 sync:
 	@echo "☁️ Syncing with GitHub..."
 	@bash ./SyncMyMac2OnlineGit.sh
-
-

@@ -1,0 +1,49 @@
+[cosmic-ray]
+# Configuration for mutation testing
+
+# Test runner configuration
+runner = "pytest"
+test-runner-args = ["-v", "--cov=cli"]
+
+# Mutation operators
+operators = [
+    "ReplaceTrueFalse",
+    "ReplaceReturnWithRaise",
+    "ReplaceConstant",
+    "ReplaceMathOperator",
+    "ReplaceComparisonOperator",
+    "ReplaceBooleanOperator",
+    "RemoveIfElse",
+    "RemoveIf",
+    "RemoveFor",
+    "RemoveWhile",
+    "RemoveTryExcept",
+    "RemoveWith",
+    "ReplaceBreakContinue",
+    "ReplaceNone",
+    "ReplaceAttribute",
+    "ReplaceMethodCall",
+    "ReplaceFunctionCall"
+]
+
+# Files to mutate
+modules = [
+    "cli.interview.interview_engine",
+    "cli.main",
+    "cli.io.console_io"
+]
+
+# Test timeout in seconds
+test-timeout = 300
+
+# Number of parallel workers
+worker-count = 4
+
+# Minimum survival rate required (percentage)
+min-survival-rate = 95
+
+# Output directory for results
+output-dir = "mutation-results"
+
+# Verbosity level
+verbosity = 2

@@ -1,4 +1,4 @@
-from setuptools import setup, find_packages
+from setuptools import find_packages, setup
 
 setup(
     name="GrizlyUDVacator",
@@ -10,8 +10,8 @@ setup(
         if line.strip() and not line.startswith("#")
     ],
     entry_points={
-        'console_scripts': [
-            'grizly = cli.main:main',
+        "console_scripts": [
+            "grizly = cli.main:main",
         ],
     },
 )

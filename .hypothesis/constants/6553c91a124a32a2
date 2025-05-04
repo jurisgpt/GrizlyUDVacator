@@ -1,0 +1,4 @@
+# file: /Users/pradeepkumar/github/GrizlyUDVacator/cli/interview/interview_engine.py
+# hypothesis_version: 6.131.9
+
+['%Y-%m-%d', 'answers', 'date', 'date_flags', 'flags', 'flags_from_text', 'follow_up', 'id', 'if_false', 'if_true', 'keywords', 'next', 'options', 'questions', 'text', 'type']

@@ -2,7 +2,7 @@
 
 ################################################################################
 # 🤖 SyncMyMac2OnlineGit.sh
-# 
+#
 # This script keeps your Mac's local Git repo in perfect sync with GitHub.
 # It automatically handles:
 #   - Pulling changes with rebase
@@ -91,7 +91,7 @@ else
     echo ""
     echo "🔄 Attempting to rebase your changes on top of GitHub..."
     git pull --rebase origin main
-    
+
     # Check if rebase was successful
     if [ $? -eq 0 ]; then
         echo ""

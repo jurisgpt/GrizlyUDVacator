@@ -12,5 +12,3 @@ cat <<EOF > .vscode/launch.json
   ]
 }
 EOF
-
-

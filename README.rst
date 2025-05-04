@@ -15,11 +15,28 @@ Features
 Installation
 ------------
 
-.. code-block:: bash
+1. Clone the repository:
 
-   git clone https://github.com/jurisgpt/GrizlyUDVacator.git
-   cd GrizlyUDVacator
-   make setup
+   .. code-block:: bash
+
+      git clone https://github.com/jurisgpt/GrizlyUDVacator.git
+      cd GrizlyUDVacator
+
+2. Create and activate a virtual environment:
+
+   .. code-block:: bash
+
+      python -m venv venv
+      source venv/bin/activate  # On Windows: venv\Scripts\activate
+
+3. Install dependencies:
+
+   .. code-block:: bash
+
+      pip install -r requirements.txt
+      pip install -r requirements-dev.txt
+
+   Note: The development requirements include docxtpl and python-docx for DOCX document generation.
 
 Usage
 -----

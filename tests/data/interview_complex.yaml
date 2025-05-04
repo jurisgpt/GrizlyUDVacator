@@ -1,0 +1,43 @@
+start_id: name
+questions:
+  - id: name
+    prompt: "What is your full name?"
+    type: text
+    required: true
+    follow_up:
+      next: age
+
+  - id: age
+    prompt: "What is your age?"
+    type: number
+    required: true
+    validators:
+      - type: range
+        min: 18
+        max: 120
+    follow_up:
+      next: has_children
+
+  - id: has_children
+    prompt: "Do you have children?"
+    type: boolean
+    follow_up:
+      if_true:
+        next: children_count
+      if_false:
+        next: end
+
+  - id: children_count
+    prompt: "How many children do you have?"
+    type: number
+    required: true
+    validators:
+      - type: range
+        min: 1
+        max: 10
+    follow_up:
+      next: summary
+
+  - id: summary
+    prompt: "Interview complete. Thank you!"
+    type: summary

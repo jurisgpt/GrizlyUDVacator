@@ -1,57 +1,20 @@
 [flake8]
-
-# Maximum line length
 max-line-length = 100
-
-# Ignore specific error codes
-ignore =
-    E203,  # whitespace before ':'
-    E266,  # too many leading '#' for block comment
-    E501,  # line too long
-    W503,  # line break before binary operator
-    W504,  # line break after binary operator
-
-# Exclude directories
-exclude =
-    tests/*,
-    docs/*,
-    .venv/*,
-    __pycache__/*,
-    .mypy_cache/*
-
-# Select specific error codes
-select =
-    E,  # PEP 8 style guide
-    F,  # PyFlakes
-    W,  # Whitespace
-
-# Enable statistics
-statistics = True
-
-# Show source code
-show-source = True
-
-# Enable per-file-ignores
-per-file-ignores =
-    # Ignore specific errors in specific files
-    # Example: test_file.py: E123
-
-# Enable max-complexity
+max-statements = 50
 max-complexity = 10
-
-# Enable max-line-length
-max-line-length = 100
-
-# Enable max-doc-length
 max-doc-length = 72
-
-# Enable max-nested-blocks
 max-nested-blocks = 5
 
-# Enable max-statements
-max-statements = 50
+ignore = E203, E266, E503, W503
+exclude =
+    tests,
+    docs,
+    .venv,
+    __pycache__,
+    .mypy_cache
 
-# Enable max-arguments
+statistics = True
+show-source = True
 max-arguments = 5
 
 # Enable max-locals
