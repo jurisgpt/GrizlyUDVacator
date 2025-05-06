@@ -1,5 +1,6 @@
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/your-image-path.png" alt="GrizlyUDVacator Logo" width="300">
+  ![image](https://github.com/user-attachments/assets/aae897d8-72a2-4182-84e3-614347055566)
+
 </p>
 
 <h1 align="center">📚 GrizlyUDVacator – Attorney Decision Aid</h1>
