@@ -1,6 +1,6 @@
 ![image](https://github.com/user-attachments/assets/a6f3f640-2e49-4240-b631-4056d0ed7876)
 
-<h1 align="center">📚 GrizlyUDVacator – Attorney Decision Aid</h1>
+
 
 <p align="center"><em>A California Legal Tech Tool to Vacate Default Judgments in Unlawful Detainer Cases</em></p>
 
