@@ -1,7 +1,4 @@
-<p align="center">
-  ![image](https://github.com/user-attachments/assets/aae897d8-72a2-4182-84e3-614347055566)
-
-</p>
+![image](https://github.com/user-attachments/assets/a6f3f640-2e49-4240-b631-4056d0ed7876)
 
 <h1 align="center">📚 GrizlyUDVacator – Attorney Decision Aid</h1>
 
