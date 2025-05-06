@@ -1,0 +1,17 @@
+scenarios:
+  - file: test_personal_service.asp
+    facts:
+      - personal_delivery(summons, complaint, defendant).
+    expect: holds(service_complete(defendant))
+
+  - file: test_substituted_service.asp
+    facts:
+      - not personal_delivery(summons, complaint, defendant).
+      - reasonable_diligence_attempted(defendant).
+    expect: holds(substituted_service_valid(defendant))
+
+  - file: test_default_entry.asp
+    facts:
+      - not filed_pleading(defendant, complaint).
+      - days_since_service_at_least(defendant, 30).
+    expect: holds(clerk_enters_default(defendant))
