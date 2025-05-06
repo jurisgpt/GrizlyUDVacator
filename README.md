@@ -1,7 +1,7 @@
 # 📚  GrizlyUDVacator - Attorney Decision Aid
 
 **Why this project matters**
-Default judgments disproportionately affect vulnerable tenants who may have valid defenses but failed to submit an answer, other legitimate reasons. This tool is designed to support legal professionals make decisions and support Tenants seeking  representation. It processes dates, legal rules and outputs mathematically sound conclusions. 
+Default judgments disproportionately affect vulnerable tenants who may have valid defenses but failed to submit an answer or for other legitimate reasons. This tool is designed to support legal professionals make decisions and support Tenants seeking  representation when faced with a "default judgement" - a courts decision taken against a Tenant without the Tenant getting their day in the court. It processes dates, legal rules and outputs mathematically sound conclusions. 
 
 **GrizlyUDVacator** automates case intake, case triage  through motion practice under California law for tenants seeking  setting aside default judgments in unlawful detainer (eviction) actions. This document catalogs the California statutes, case law, and judicial forms embedded in the project’s rule engine and document generator.
 
