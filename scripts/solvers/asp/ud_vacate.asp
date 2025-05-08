@@ -24,6 +24,7 @@
 days(0..1000).  % Maximum of 1000 days
 
 % Debug Information
+% Basic Facts
 #show days/1.  % Show all possible days
 #show default_judgment_taken/1.  % Show if default judgment was taken
 #show excusable_neglect/1.  % Show if excusable neglect exists
@@ -31,17 +32,32 @@ days(0..1000).  % Maximum of 1000 days
 #show service_type/2.  % Show service types
 #show notice_type/2.  % Show notice types
 #show void_reason/2.  % Show void reasons
+
+% Rule Evaluation
 #show vacate_default_judgment/1.  % Show final judgment vacate status
-#show days_since_service/2.  % Show days since service
-#show days_since_notice/2.  % Show days since notice
 #show within_six_months_judgment/1.  % Show time window status
 #show within_two_years_entry/1.  % Show extended time window status
 #show within_limit_473_5/1.  % Show CCP §473.5 time limit status
+
+% Service and Notice Details
+#show days_since_service/2.  % Show days since service
+#show days_since_notice/2.  % Show days since notice
 #show personal_delivery/3.  % Show personal delivery status
 #show reasonable_diligence_attempted/1.  % Show diligence status
 #show filed_pleading/2.  % Show pleading filing status
 #show actual_notice_received/1.  % Show notice receipt status
 #show notice_given/2.  % Show notice given status
+
+% Time Window Calculations
+#show days/1.  % Show all possible days
+#show days_since_entry/2.  % Show days since entry
+#show days_since_notice/2.  % Show days since notice
+#show days_since_service/2.  % Show days since service
+
+% Rule Dependencies
+#show default_judgment_taken/1.  % Show default judgment status
+#show excusable_neglect/1.  % Show excusable neglect status
+#show within_six_months_judgment/1.  % Show time window status
 #show default_judgment_void/1.  % Show void judgment status
 #show void_due_improper_service/1.  % Show improper service status
 
@@ -66,15 +82,30 @@ personal_delivery(summons, complaint, defendant) :-
     service_type(defendant, "personal"),
     days_since_service(defendant, D),
     D >= 0.
+% Debug: Personal service status
+#show personal_delivery/3.
 
+% Rule: Service by publication requires proof of diligent attempts (CCP §415.50)
 reasonable_diligence_attempted(defendant) :-
-    days_since_service(defendant, D),
-    D >= 0.
+    service_type(defendant, "publication").
+% Debug: Publication service status
+#show reasonable_diligence_attempted/1.
 
-% Pleadings
+% --- Rule Facts: Pleadings ---
+% Rule: Pleading must be filed after service (CCP §412.20)
 filed_pleading(defendant, complaint) :-
     days_since_service(defendant, D),
     D >= 0.
+% Debug: Pleading filing status
+#show filed_pleading/2.
+
+% Debug: Service type tracking
+#show service_type/2.
+
+% Debug: Days calculations
+#show days_since_service/2.
+#show days_since_entry/2.
+#show days_since_notice/2.
 
 % Notice
 actual_notice_received(defendant) :-
@@ -136,37 +167,37 @@ clerk_enters_default(defendant) :-
     days_since_service_at_least(defendant, 30).
 
 % --- Rule Facts: Relief from Default Judgment ---
-% Rule: Relief for excusable neglect filed within six months (CCP §473(b))
-vacate_default_judgment(defendant) :-
-    default_judgment_taken(defendant),
-    excusable_neglect(defendant),
-    within_six_months_judgment(defendant).
-
-% Rule: Relief when no actual notice in time to defend (CCP §473.5(a))
+% Rule: Relief for CCP §473.5(a)
+% A motion to vacate must be filed within 180 days of entry or notice of judgment
+% AND the defendant did not receive actual notice
 vacate_default_judgment(defendant) :-
     default_judgment_taken(defendant),
     not actual_notice_received(defendant),
-    within_limit_473_5(defendant).
+    days_since_entry(defendant, D1),
+    days(D1),
+    D1 <= 180.
 
-% Rule: Relief when judgment is void (CCP §473(d))
-vacate_default_judgment(defendant) :-
-    default_judgment_void(defendant),
-    notice_given(defendant, plaintiff).
-
-% Rule: Relief when void for improper service (Case law)
 vacate_default_judgment(defendant) :-
     default_judgment_taken(defendant),
-    void_due_improper_service(defendant),
-    within_two_years_entry(defendant).
+    not actual_notice_received(defendant),
+    days_since_notice(defendant, D2),
+    days(D2),
+    D2 <= 180.
 
-% ----------------------------------------------------------------------------
-% Helper Predicates: Temporal and Negation Support
+% Helper predicates for time calculations
+days_since_entry(defendant, D) :- days(D).
+days_since_notice(defendant, D) :- days(D).
+
+% Debug information
+#show days/1.
+#show days_since_entry/2.
+#show days_since_notice/2.
+#show vacate_default_judgment/1.
 
 
 
 % ----------------------------------------------------------------------------
 % Sample Test Scenario: Excusable Neglect Relief
-% Provide base facts to simulate a case where defendant seeks relief
 
 default_judgment_taken(defendant).
 excusable_neglect(defendant).

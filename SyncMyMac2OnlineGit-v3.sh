@@ -416,6 +416,44 @@ if [ "$STASHED" -eq 1 ]; then
     fi
 fi
 
+# Check if everything is properly synced
+print_header "${GEAR} FINAL VERIFICATION ${GEAR}" "Making sure everything is truly in sync"
+
+# Use --no-pager to avoid the hanging issue
+print_info "${EYES} Checking current status..."
+git --no-pager status
+
+# Verify that local and remote are in sync
+LOCAL_HASH=$(git rev-parse HEAD)
+REMOTE_HASH=$(git rev-parse origin/main 2>/dev/null || echo "unknown")
+
+if [ "$LOCAL_HASH" = "$REMOTE_HASH" ]; then
+    print_success "Perfect! Local and remote repositories are exactly in sync!"
+    print_info "Local commit: $LOCAL_HASH"
+else
+    print_warning "Local and remote repositories are not fully in sync."
+    print_info "Local commit: $LOCAL_HASH"
+    print_info "Remote commit: $REMOTE_HASH"
+
+    # If local is ahead (likely case after all our operations)
+    if git merge-base --is-ancestor origin/main HEAD 2>/dev/null; then
+        print_info "${ROCKET} Your local repository is ahead of GitHub."
+        print_info "${LIGHTNING} Pushing final changes to GitHub..."
+
+        if git push origin main; then
+            print_success "Successfully pushed all changes to GitHub!"
+        else
+            print_warning "Could not push to GitHub. You may need to push manually."
+            print_info "Try: git push origin main"
+        fi
+    fi
+fi
+
+# Final clean status check that won't hang
+print_info "${EYES} Final repository status:"
+git --no-pager status | grep -v "^$" | head -n 3
+
+
 print_header "${SPARKLES} SYNC COMPLETE ${SPARKLES}" "Your Mac and GitHub are now in perfect harmony"
 
 echo -e "${BOLD}${GREEN}${LOVE} SUCCESS! ${LOVE}${NC}"
@@ -424,5 +462,41 @@ echo -e "${CYAN}Keep coding brilliantly! ${FIRE}${NC}"
 echo ""
 echo -e "${BLUE}${TIMER} Completed at:${NC} $(date)"
 echo ""
+
+# Play a success sound
+print_info "${SPARKLES} Playing success sound..."
+
+# Play a sequence of pleasant sounds to indicate completion
+afplay /System/Library/Sounds/Glass.aiff
+sleep 0.3
+afplay /System/Library/Sounds/Tink.aiff
+
+
+
+# Try different sound methods available on macOS
+if command -v afplay &> /dev/null; then
+    # Using afplay (built into macOS)
+    afplay /System/Library/Sounds/Glass.aiff &
+elif command -v say &> /dev/null; then
+    # Using text-to-speech if sound files aren't available
+    say "Git synchronization successful" &
+elif command -v tput &> /dev/null; then
+    # If all else fails, use the terminal bell
+    tput bel
+else
+    # Fall back to ASCII bell character
+    echo -e "\a"
+fi
+
+
+# Ensure we're not leaving any suspended processes
+jobs > /dev/null 2>&1
+if [ $? -eq 0 ]; then
+    jobs_running=$(jobs | wc -l)
+    if [ $jobs_running -gt 0 ]; then
+        print_info "Cleaning up any background processes..."
+        kill $(jobs -p) > /dev/null 2>&1 || true
+    fi
+fi
 
 exit 0
