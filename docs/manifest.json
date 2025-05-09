@@ -1,0 +1,29 @@
+{
+  "name": "GrizlyUDVacator",
+  "short_name": "GrizlyUDVacator",
+  "description": "Open-source legal tech platform for California Unlawful Detainer defense using AI and Knowledge Graphs",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f9f9f9",
+  "theme_color": "#0077b5",
+  "icons": [
+    {
+      "src": "/assets/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/assets/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "/assets/screenshot.png",
+      "sizes": "1280x800",
+      "type": "image/png",
+      "description": "GrizlyUDVacator Legal Knowledge Graph"
+    }
+  ]
+}
