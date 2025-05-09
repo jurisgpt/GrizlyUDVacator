@@ -1,0 +1,40 @@
+{
+  "timestamp": "2025-05-09T15:37:06.360549",
+  "tests": [
+    {
+      "name": "Home Page",
+      "result": "FAIL",
+      "details": "HTTPConnectionPool(host='localhost', port=8082): Max retries exceeded with url: / (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x10354d400>: Failed to establish a new connection: [Errno 61] Connection refused'))"
+    },
+    {
+      "name": "Performance",
+      "result": "FAIL",
+      "details": "HTTPConnectionPool(host='localhost', port=8082): Max retries exceeded with url: / (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x10354d700>: Failed to establish a new connection: [Errno 61] Connection refused'))"
+    },
+    {
+      "name": "SEO Elements",
+      "result": "FAIL",
+      "details": "HTTPConnectionPool(host='localhost', port=8082): Max retries exceeded with url: / (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x10354d8b0>: Failed to establish a new connection: [Errno 61] Connection refused'))"
+    },
+    {
+      "name": "Sitemap",
+      "result": "FAIL",
+      "details": "HTTPConnectionPool(host='localhost', port=8082): Max retries exceeded with url: /sitemap.xml (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x10354dca0>: Failed to establish a new connection: [Errno 61] Connection refused'))"
+    },
+    {
+      "name": "404 Page",
+      "result": "FAIL",
+      "details": "HTTPConnectionPool(host='localhost', port=8082): Max retries exceeded with url: /nonexistent-page (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x10354dfd0>: Failed to establish a new connection: [Errno 61] Connection refused'))"
+    },
+    {
+      "name": "Internal Links",
+      "result": "FAIL",
+      "details": "HTTPConnectionPool(host='localhost', port=8082): Max retries exceeded with url: / (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x10354e1b0>: Failed to establish a new connection: [Errno 61] Connection refused'))"
+    }
+  ],
+  "summary": {
+    "passed": 0,
+    "failed": 6,
+    "total": 6
+  }
+}
