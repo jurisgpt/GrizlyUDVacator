@@ -1,9 +1,33 @@
-
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://jurisgpt.github.io/GrizlyUDVacator/</loc>
     <lastmod>2025-05-09</lastmod>
     <priority>1.0</priority>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+    <loc>https://jurisgpt.github.io/GrizlyUDVacator/legal_graph_interactive.html</loc>
+    <lastmod>2025-05-09</lastmod>
+    <priority>0.9</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://jurisgpt.github.io/GrizlyUDVacator/test.html</loc>
+    <lastmod>2025-05-09</lastmod>
+    <priority>0.8</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://jurisgpt.github.io/GrizlyUDVacator/INTERVIEW_DESIGN.md</loc>
+    <lastmod>2025-05-09</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://jurisgpt.github.io/GrizlyUDVacator/LEGAL_AUTHORITY.md</loc>
+    <lastmod>2025-05-09</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
   </url>
 </urlset>

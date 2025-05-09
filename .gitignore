@@ -12,7 +12,6 @@ __pycache__/
 
 # Output & temp files
 *.log
-*.txt
 *.md
 *.pdf
 *.docx
@@ -26,6 +25,10 @@ cli/summary_*.md
 cli/motion_to_vacate_*.docx
 
 # Test artifacts
+*.txt
+!grizlyudvacator/cli/*.txt
+!docs/robots.txt
+!docs/sitemap.xml
 htmlcov/
 .coverage
 .cache/
@@ -47,3 +50,5 @@ pip-log.txt
 
 # Documentation build directory
 docs/_build/
+test.txt
+test_save_permission.txt
