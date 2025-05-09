@@ -1,173 +1,213 @@
-<html>
-    <head>
-        <meta charset="utf-8">
-        
-            <script src="lib/bindings/utils.js"></script>
-            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis-network/9.1.2/dist/dist/vis-network.min.css" integrity="sha512-WgxfT5LWjfszlPHXRmBWHkV2eceiWTOBvrKCNbdgDYTHrT2AeLCGbF4sZlZw3UMN3WtL0tGUoIAKsu8mllg/XA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/vis-network/9.1.2/dist/vis-network.min.js" integrity="sha512-LnvoEWDFrqGHlHmDD2101OrLcbsfkrzoSpvtSQtxK3RMnRV0eOkhhBN2dXHKRrUU8p2DGRTk35n4O8nWSVe1mQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-            
-        
-<center>
-<h1></h1>
-</center>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>GrizlyUDVacator Legal Knowledge Graph</title>
 
-<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
-<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
-        <link
-          href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css"
-          rel="stylesheet"
-          integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6"
-          crossorigin="anonymous"
-        />
-        <script
-          src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
-          integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
-          crossorigin="anonymous"
-        ></script>
+  <!-- Accessibility and semantics -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Interactive legal knowledge graph for California tenant defense statutes.">
 
+  <!-- Vis.js and Bootstrap CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis-network/9.1.2/dist/dist/vis-network.min.css" integrity="sha512-WgxfT5LWjfszlPHXRmBWHkV2eceiWTOBvrKCNbdgDYTHrT2AeLCGbF4sZlZw3UMN3WtL0tGUoIAKsu8mllg/XA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
 
-        <center>
-          <h1></h1>
-        </center>
-        <style type="text/css">
+  <!-- Accessibility CSS -->
+  <style>
+    :focus {
+      outline: 3px solid #00ffcc;
+      outline-offset: 2px;
+    }
+    body, html {
+      font-family: Arial, sans-serif;
+      background-color: #222;
+      color: white;
+      margin: 0;
+      padding: 0;
+      height: 100%;
+    }
+    .vis-network {
+      outline: none;
+    }
+    header {
+      background-color: #333;
+      padding: 1rem;
+    }
+    header h1 {
+      font-size: 1.5rem;
+      color: #fff;
+    }
+    a.skip-link {
+      position: absolute;
+      left: -999px;
+      top: auto;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+    }
+    a.skip-link:focus {
+      position: static;
+      width: auto;
+      height: auto;
+      padding: 0.5rem;
+      background: #000;
+      color: #fff;
+      z-index: 1000;
+    }
+    #mynetwork {
+      width: 100%;
+      height: 800px;
+      background-color: #222222;
+      border: 1px solid lightgray;
+      position: relative;
+      float: left;
+    }
+  </style>
+</head>
+<body>
+  <a href="#main-graph" class="skip-link">Skip to graph</a>
+  <header role="banner">
+    <h1>GrizlyUDVacator: Legal Knowledge Graph</h1>
+  </header>
+  <main id="main-graph" role="main" aria-label="Legal Graph Visualization">
+    <div id="mynetwork" tabindex="0" aria-label="Interactive graph of legal code sections and entities"></div>
+  </main>
 
-             #mynetwork {
-                 width: 100%;
-                 height: 800px;
-                 background-color: #222222;
-                 border: 1px solid lightgray;
-                 position: relative;
-                 float: left;
-             }
+  <script type="text/javascript">
+    // Initialize global variables
+    var network = null;
+    var container = document.getElementById('mynetwork');
 
-             
+    // Add ARIA labels for better accessibility
+    container.setAttribute('role', 'region');
+    container.setAttribute('aria-label', 'Interactive legal knowledge graph');
 
-             
+    // Update stats when nodes are selected
+    function updateStats() {
+      if (!network) return;
+      var selectedNodes = network.getSelectedNodes();
+      var selectedEdges = network.getSelectedEdges();
+      var stats = {
+        nodes: network.body.data.nodes.length,
+        edges: network.body.data.edges.length,
+        selected: selectedNodes.length + selectedEdges.length
+      };
 
-             
-        </style>
-    
-    <style>
-        body, html {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            background-color: #222;
-            color: white;
-            margin: 0;
-            padding: 0;
-            height: 100%;
-            overflow: hidden;
+      // Update ARIA live region
+      var statsRegion = document.getElementById('stats-region');
+      if (statsRegion) {
+        statsRegion.innerHTML = `
+          <p>Nodes: ${stats.nodes}</p>
+          <p>Edges: ${stats.edges}</p>
+          <p>Selected: ${stats.selected}</p>
+        `;
+      }
+    }
+
+    // Initialize network
+    var data = {
+      nodes: new vis.DataSet([]),
+      edges: new vis.DataSet([])
+    };
+
+    var options = {
+      nodes: {
+        font: {
+          size: 14,
+          strokeWidth: 1,
+          strokeColor: "#111"
+        },
+        shape: "dot",
+        size: 10
+      },
+      edges: {
+        font: {
+          size: 12,
+          strokeWidth: 1,
+          strokeColor: "#111"
+        },
+        smooth: {
+          type: "dynamic",
+          roundness: 0.5
+        },
+        arrows: {
+          to: {
+            enabled: true,
+            scaleFactor: 0.8
+          }
         }
-        #header {
-            background-color: #333;
-            padding: 10px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.3);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+      },
+      interaction: {
+        navigationButtons: true,
+        hover: true,
+        keyboard: true
+      },
+      physics: {
+        enabled: true,
+        forceAtlas2Based: {
+          gravitationalConstant: -50,
+          springLength: 100,
+          springConstant: 0.05
+        },
+        minVelocity: 0.75,
+        solver: "forceAtlas2Based",
+        stabilization: {
+          enabled: true,
+          iterations: 1000,
+          updateInterval: 25
         }
-        #title {
-            font-size: 20px;
-            font-weight: bold;
-        }
-        #stats {
-            font-size: 14px;
-            color: #aaa;
-        }
-        .container {
-            height: calc(100vh - 50px);
-            margin: 0;
-            padding: 0;
-        }
-        .vis-network {
-            outline: none;
-        }
-    </style>
-    <div id="header">
-        <div id="title">Legal Knowledge Graph</div>
-        <div id="stats"></div>
-    </div>
-    <div class="container">
-        <div id="mynetwork"></div>
-    </div>
-    <script type="text/javascript">
-        // Update stats when nodes are selected
-        var network = null;
-        var container = document.getElementById('mynetwork');
-        var stats = document.getElementById('stats');
-        
-        function updateStats() {
-            var selectedNodes = network.getSelectedNodes();
-            var selectedEdges = network.getSelectedEdges();
-            
-            stats.innerHTML = `
-                Nodes: ${network.body.data.nodes.length} |
-                Edges: ${network.body.data.edges.length} |
-                Selected: ${selectedNodes.length + selectedEdges.length}
-            `;
-        }
-        
-        // Initialize network
-        var data = {
-            nodes: new vis.DataSet([]),
-            edges: new vis.DataSet([])
-        };
-        
-        var options = {
-            nodes: {
-                font: {
-                    size: 14,
-                    strokeWidth: 1,
-                    strokeColor: "#111"
-                }
-            },
-            edges: {
-                font: {
-                    size: 12,
-                    strokeWidth: 1,
-                    strokeColor: "#111"
-                },
-                smooth: {
-                    type: "dynamic",
-                    roundness: 0.5
-                },
-                arrows: {
-                    to: {
-                        enabled: true,
-                        scaleFactor: 0.8
-                    }
-                }
-            },
-            interaction: {
-                navigationButtons: true,
-                hover: true
-            }
-        };
-        
-        network = new vis.Network(container, data, options);
-        
-        // Add event listeners
-        network.on('selectNode', updateStats);
-        network.on('selectEdge', updateStats);
-        network.on('deselectNode', updateStats);
-        network.on('deselectEdge', updateStats);
-        
-        // Initial stats update
-        updateStats();
-    </script>
-    </body>
-</html>
-    </head>
+      }
+    };
 
+    network = new vis.Network(container, data, options);
 
+    // Add ARIA live region for status updates
+    var statsRegion = document.createElement('div');
+    statsRegion.id = 'stats-region';
+    statsRegion.setAttribute('aria-live', 'polite');
+    statsRegion.setAttribute('aria-atomic', 'true');
+    statsRegion.style.position = 'absolute';
+    statsRegion.style.top = '0';
+    statsRegion.style.left = '0';
+    statsRegion.style.width = '100%';
+    statsRegion.style.padding = '10px';
+    statsRegion.style.backgroundColor = '#333';
+    statsRegion.style.color = '#fff';
+    statsRegion.style.zIndex = '1000';
+    document.body.appendChild(statsRegion);
+
+    // Add keyboard navigation
+    container.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        network.unselectAll();
+      }
+    });
+
+    // Add event listeners
+    network.on('selectNode', updateStats);
+    network.on('selectEdge', updateStats);
+    network.on('deselectNode', updateStats);
+    network.on('deselectEdge', updateStats);
+
+    // Initial stats update
+    updateStats();
+
+    // Draw graph
+    var nodes = new vis.DataSet([{"color": "#4CAF50", "font": {"color": "white"}, "id": "CIV_1950.5", "label": "CIV\n1950.5", "shape": "box", "title": "CIV_1950.5"}, {"color": "#4CAF50", "font": {"color": "white"}, "id": "CIV_1950.6", "label": "CIV\n1950.6", "shape": "box", "title": "CIV_1950.6"}, {"color": "#4CAF50", "font": {"color": "white"}, "id": "CIV_116.220", "label": "CIV\n116.220", "shape": "box", "title": "CIV_116.220"}, {"color": "#4CAF50", "font": {"color": "white"}, "id": "CIV_1161", "label": "CIV\n1161", "shape": "box", "title": "CIV_1161"}, {"color": "#4CAF50", "font": {"color": "white"}, "id": "CIV_1946", "label": "CIV\n1946", "shape": "box", "title": "CIV_1946"}, {"color": "#4CAF50", "font": {"color": "white"}, "id": "CIV_400", "label": "CIV\n400", "shape": "box", "title": "CIV_400"}, {"color": "#4CAF50", "font": {"color": "white"}, "id": "CIV_780", "label": "CIV\n780", "shape": "box", "title": "CIV_780"}, {"color": "#E91E63", "font": {"color": "white"}, "id": "notice", "label": "notice", "shape": "ellipse", "title": "notice"}, {"color": "#E91E63", "font": {"color": "white"}, "id": "contract", "label": "contract", "shape": "ellipse", "title": "contract"}, {"color": "#E91E63", "font": {"color": "white"}, "id": "landlord", "label": "landlord", "shape": "ellipse", "title": "landlord"}, {"color": "#E91E63", "font": {"color": "white"}, "id": "property", "label": "property", "shape": "ellipse", "title": "property"}, {"color": "#E91E63", "font": {"color": "white"}, "id": "court", "label": "court", "shape": "ellipse", "title": "court"}, {"color": "#E91E63", "font": {"color": "white"}, "id": "tenant", "label": "tenant", "shape": "ellipse", "title": "tenant"}, {"color": "#E91E63", "font": {"color": "white"}, "id": "deposit", "label": "deposit", "shape": "ellipse", "title": "deposit"}, {"color": "#F44336", "font": {"color": "white"}, "id": "fine", "label": "fine", "shape": "hexagon", "title": "fine"}, {"color": "#F44336", "font": {"color": "white"}, "id": "damages", "label": "damages", "shape": "hexagon", "title": "damages"}, {"color": "#FF9800", "font": {"color": "white"}, "id": "$125", "label": "$125", "shape": "circle", "title": "$125"}, {"color": "#607D8B", "font": {"color": "white"}, "id": "January 1, 2003", "label": "January 1, 2003", "shape": "text", "title": "January 1, 2003"}, {"color": "#607D8B", "font": {"color": "white"}, "id": "April 1, 2025", "label": "April 1, 2025", "shape": "text", "title": "April 1, 2025"}, {"color": "#607D8B", "font": {"color": "white"}, "id": "July 1, 2024", "label": "July 1, 2024", "shape": "text", "title": "July 1, 2024"}, {"color": "#607D8B", "font": {"color": "white"}, "id": "July 1, 2025", "label": "July 1, 2025", "shape": "text", "title": "July 1, 2025"}, {"color": "#607D8B", "font": {"color": "white"}, "id": "January 1, 2025", "label": "January 1, 2025", "shape": "text", "title": "January 1, 2025"}, {"color": "#2196F3", "font": {"color": "white"}, "id": "CCP_1161a", "label": "CCP\n1161a", "shape": "box", "title": "CCP_1161a"}, {"color": "#2196F3", "font": {"color": "white"}, "id": "CCP_2924", "label": "CCP\n2924", "shape": "box", "title": "CCP_2924"}, {"color": "#2196F3", "font": {"color": "white"}, "id": "CCP_1807", "label": "CCP\n1807", "shape": "box", "title": "CCP_1807"}, {"color": "#2196F3", "font": {"color": "white"}, "id": "CCP_1162", "label": "CCP\n1162", "shape": "box", "title": "CCP_1162"}, {"color": "#2196F3", "font": {"color": "white"}, "id": "CCP_1800", "label": "CCP\n1800", "shape": "box", "title": "CCP_1800"}, {"color": "#2196F3", "font": {"color": "white"}, "id": "CCP_1803", "label": "CCP\n1803", "shape": "box", "title": "CCP_1803"}, {"color": "#9C27B0", "font": {"color": "white"}, "id": "CCP 1161a - No-fault Termination", "label": "CCP 1161a - No-fault T...", "shape": "dot", "title": "CCP 1161a - No-fault Termination"}, {"color": "#795548", "font": {"color": "white"}, "id": "30 day", "label": "30 day", "shape": "database", "title": "30 day"}, {"color": "#2196F3", "font": {"color": "white"}, "id": "CCP_473", "label": "CCP\n473", "shape": "box", "title": "CCP_473"}, {"color": "#2196F3", "font": {"color": "white"}, "id": "CCP_583.310", "label": "CCP\n583.310", "shape": "box", "title": "CCP_583.310"}, {"color": "#9C27B0", "font": {"color": "white"}, "id": "CCP 473 - Relief from Default", "label": "CCP 473 - Relief from ...", "shape": "dot", "title": "CCP 473 - Relief from Default"}, {"color": "#FF9800", "font": {"color": "white"}, "id": "$1000", "label": "$1000", "shape": "circle", "title": "$1000"}, {"color": "#607D8B", "font": {"color": "white"}, "id": "January 1, 1997", "label": "January 1, 1997", "shape": "text", "title": "January 1, 1997"}, {"color": "#795548", "font": {"color": "white"}, "id": "90 day", "label": "90 day", "shape": "database", "title": "90 day"}, {"color": "#4CAF50", "font": {"color": "white"}, "id": "CIV_1940", "label": "CIV\n1940", "shape": "box", "title": "CIV_1940"}, {"color": "#4CAF50", "font": {"color": "white"}, "id": "CIV_1137", "label": "CIV\n1137", "shape": "box", "title": "CIV_1137"}, {"color": "#4CAF50", "font": {"color": "white"}, "id": "CIV_7280", "label": "CIV\n7280", "shape": "box", "title": "CIV_7280"}, {"color": "#4CAF50", "font": {"color": "white"}, "id": "CIV_1860", "label": "CIV\n1860", "shape": "box", "title": "CIV_1860"}, {"color": "#9C27B0", "font": {"color": "white"}, "id": "CIV 1940 - Habitability Standards", "label": "CIV 1940 - Habitabilit...", "shape": "dot", "title": "CIV 1940 - Habitability Standards"}, {"color": "#607D8B", "font": {"color": "white"}, "id": "September 29, 1996", "label": "September 29, 1996", "shape": "text", "title": "September 29, 1996"}, {"color": "#2196F3", "font": {"color": "white"}, "id": "CCP_1161", "label": "CCP\n1161", "shape": "box", "title": "CCP_1161"}, {"color": "#9C27B0", "font": {"color": "white"}, "id": "CCP 1161 - Termination of Tenancy", "label": "CCP 1161 - Termination...", "shape": "dot", "title": "CCP 1161 - Termination of Tenancy"}, {"color": "#2196F3", "font": {"color": "white"}, "id": "CCP_1174", "label": "CCP\n1174", "shape": "box", "title": "CCP_1174"}, {"color": "#2196F3", "font": {"color": "white"}, "id": "CCP_1965", "label": "CCP\n1965", "shape": "box", "title": "CCP_1965"}, {"color": "#2196F3", "font": {"color": "white"}, "id": "CCP_2099", "label": "CCP\n2099", "shape": "box", "title": "CCP_2099"}, {"color": "#2196F3", "font": {"color": "white"}, "id": "CCP_2080", "label": "CCP\n2080", "shape": "box", "title": "CCP_2080"}, {"color": "#2196F3", "font": {"color": "white"}, "id": "CCP_1990", "label": "CCP\n1990", "shape": "box", "title": "CCP_1990"}, {"color": "#2196F3", "font": {"color": "white"}, "id": "CCP_1988", "label": "CCP\n1988", "shape": "box", "title": "CCP_1988"}, {"color": "#2196F3", "font": {"color": "white"}, "id": "CCP_1980", "label": "CCP\n1980", "shape": "box", "title": "CCP_1980"}, {"color": "#2196F3", "font": {"color": "white"}, "id": "CCP_712.010", "label": "CCP\n712.010", "shape": "box", "title": "CCP_712.010"}, {"color": "#2196F3", "font": {"color": "white"}, "id": "CCP_1983", "label": "CCP\n1983", "shape": "box", "title": "CCP_1983"}, {"color": "#2196F3", "font": {"color": "white"}, "id": "CCP_1166a", "label": "CCP\n1166a", "shape": "box", "title": "CCP_1166a"}, {"color": "#9C27B0", "font": {"color": "white"}, "id": "CCP 1174 - Restitution", "label": "CCP 1174 - Restitution", "shape": "dot", "title": "CCP 1174 - Restitution"}, {"color": "#E91E63", "font": {"color": "white"}, "id": "eviction", "label": "eviction", "shape": "ellipse", "title": "eviction"}, {"color": "#FF9800", "font": {"color": "white"}, "id": "$600", "label": "$600", "shape": "circle", "title": "$600"}, {"color": "#607D8B", "font": {"color": "white"}, "id": "January 1, 1994", "label": "January 1, 1994", "shape": "text", "title": "January 1, 1994"}]);
+    var edges = new vis.DataSet([{"arrows": "to", "color": "#2196F3", "from": "CIV_1950.5", "label": "refers_to", "title": "CIV_1950.5 \u2192 refers_to \u2192 CIV_1950.6", "to": "CIV_1950.6"}, {"arrows": "to", "color": "#2196F3", "from": "CIV_1950.5", "label": "refers_to", "title": "CIV_1950.5 \u2192 refers_to \u2192 CIV_116.220", "to": "CIV_116.220"}, {"arrows": "to", "color": "#2196F3", "from": "CIV_1950.5", "label": "refers_to", "title": "CIV_1950.5 \u2192 refers_to \u2192 CIV_1161", "to": "CIV_1161"}, {"arrows": "to", "color": "#2196F3", "from": "CIV_1950.5", "label": "refers_to", "title": "CIV_1950.5 \u2192 refers_to \u2192 CIV_1946", "to": "CIV_1946"}, {"arrows": "to", "color": "#2196F3", "from": "CIV_1950.5", "label": "refers_to", "title": "CIV_1950.5 \u2192 refers_to \u2192 CIV_400", "to": "CIV_400"}, {"arrows": "to", "color": "#2196F3", "from": "CIV_1950.5", "label": "refers_to", "title": "CIV_1950.5 \u2192 refers_to \u2192 CIV_780", "to": "CIV_780"}, {"arrows": "to", "color": "#E91E63", "from": "CIV_1950.5", "label": "involves_entity", "title": "CIV_1950.5 \u2192 involves_entity \u2192 notice", "to": "notice"}, {"arrows": "to", "color": "#E91E63", "from": "CIV_1950.5", "label": "involves_entity", "title": "CIV_1950.5 \u2192 involves_entity \u2192 contract", "to": "contract"}, {"arrows": "to", "color": "#E91E63", "from": "CIV_1950.5", "label": "involves_entity", "title": "CIV_1950.5 \u2192 involves_entity \u2192 landlord", "to": "landlord"}, {"arrows": "to", "color": "#E91E63", "from": "CIV_1950.5", "label": "involves_entity", "title": "CIV_1950.5 \u2192 involves_entity \u2192 property", "to": "property"}, {"arrows": "to", "color": "#E91E63", "from": "CIV_1950.5", "label": "involves_entity", "title": "CIV_1950.5 \u2192 involves_entity \u2192 court", "to": "court"}, {"arrows": "to", "color": "#E91E63", "from": "CIV_1950.5", "label": "involves_entity", "title": "CIV_1950.5 \u2192 involves_entity \u2192 tenant", "to": "tenant"}, {"arrows": "to", "color": "#E91E63", "from": "CIV_1950.5", "label": "involves_entity", "title": "CIV_1950.5 \u2192 involves_entity \u2192 deposit", "to": "deposit"}, {"arrows": "to", "color": "#F44336", "from": "CIV_1950.5", "label": "has_penalty", "title": "CIV_1950.5 \u2192 has_penalty \u2192 fine", "to": "fine"}, {"arrows": "to", "color": "#F44336", "from": "CIV_1950.5", "label": "has_penalty", "title": "CIV_1950.5 \u2192 has_penalty \u2192 damages", "to": "damages"}, {"arrows": "to", "color": "#FF9800", "from": "CIV_1950.5", "label": "mentions_amount", "title": "CIV_1950.5 \u2192 mentions_amount \u2192 $125", "to": "$125"}, {"arrows": "to", "color": "#607D8B", "from": "CIV_1950.5", "label": "mentions_date", "title": "CIV_1950.5 \u2192 mentions_date \u2192 January 1, 2003", "to": "January 1, 2003"}, {"arrows": "to", "color": "#607D8B", "from": "CIV_1950.5", "label": "mentions_date", "title": "CIV_1950.5 \u2192 mentions_date \u2192 April 1, 2025", "to": "April 1, 2025"}, {"arrows": "to", "color": "#607D8B", "from": "CIV_1950.5", "label": "mentions_date", "title": "CIV_1950.5 \u2192 mentions_date \u2192 July 1, 2024", "to": "July 1, 2024"}, {"arrows": "to", "color": "#607D8B", "from": "CIV_1950.5", "label": "mentions_date", "title": "CIV_1950.5 \u2192 mentions_date \u2192 July 1, 2025", "to": "July 1, 2025"}, {"arrows": "to", "color": "#607D8B", "from": "CIV_1950.5", "label": "mentions_date", "title": "CIV_1950.5 \u2192 mentions_date \u2192 April 1, 2025", "to": "April 1, 2025"}, {"arrows": "to", "color": "#607D8B", "from": "CIV_1950.5", "label": "mentions_date", "title": "CIV_1950.5 \u2192 mentions_date \u2192 July 1, 2024", "to": "July 1, 2024"}, {"arrows": "to", "color": "#607D8B", "from": "CIV_1950.5", "label": "mentions_date", "title": "CIV_1950.5 \u2192 mentions_date \u2192 January 1, 2025", "to": "January 1, 2025"}, {"arrows": "to", "color": "#607D8B", "from": "CIV_1950.5", "label": "mentions_date", "title": "CIV_1950.5 \u2192 mentions_date \u2192 January 1, 2025", "to": "January 1, 2025"}, {"arrows": "to", "color": "#2196F3", "from": "CCP_1161a", "label": "refers_to", "title": "CCP_1161a \u2192 refers_to \u2192 CCP_2924", "to": "CCP_2924"}, {"arrows": "to", "color": "#2196F3", "from": "CCP_1161a", "label": "refers_to", "title": "CCP_1161a \u2192 refers_to \u2192 CCP_1807", "to": "CCP_1807"}, {"arrows": "to", "color": "#2196F3", "from": "CCP_1161a", "label": "refers_to", "title": "CCP_1161a \u2192 refers_to \u2192 CCP_1162", "to": "CCP_1162"}, {"arrows": "to", "color": "#2196F3", "from": "CCP_1161a", "label": "refers_to", "title": "CCP_1161a \u2192 refers_to \u2192 CCP_1800", "to": "CCP_1800"}, {"arrows": "to", "color": "#2196F3", "from": "CCP_1161a", "label": "refers_to", "title": "CCP_1161a \u2192 refers_to \u2192 CCP_1803", "to": "CCP_1803"}, {"arrows": "to", "color": "#4CAF50", "from": "CCP_1161a", "label": "is_about", "title": "CCP_1161a \u2192 is_about \u2192 CCP 1161a - No-fault Termination", "to": "CCP 1161a - No-fault Termination"}, {"arrows": "to", "color": "#E91E63", "from": "CCP_1161a", "label": "involves_entity", "title": "CCP_1161a \u2192 involves_entity \u2192 property", "to": "property"}, {"arrows": "to", "color": "#E91E63", "from": "CCP_1161a", "label": "involves_entity", "title": "CCP_1161a \u2192 involves_entity \u2192 notice", "to": "notice"}, {"arrows": "to", "color": "#E91E63", "from": "CCP_1161a", "label": "involves_entity", "title": "CCP_1161a \u2192 involves_entity \u2192 contract", "to": "contract"}, {"arrows": "to", "color": "#E91E63", "from": "CCP_1161a", "label": "involves_entity", "title": "CCP_1161a \u2192 involves_entity \u2192 tenant", "to": "tenant"}, {"arrows": "to", "color": "#795548", "from": "CCP_1161a", "label": "specifies_period", "title": "CCP_1161a \u2192 specifies_period \u2192 30 day", "to": "30 day"}, {"arrows": "to", "color": "#2196F3", "from": "CCP_473", "label": "refers_to", "title": "CCP_473 \u2192 refers_to \u2192 CCP_473", "to": "CCP_473"}, {"arrows": "to", "color": "#2196F3", "from": "CCP_473", "label": "refers_to", "title": "CCP_473 \u2192 refers_to \u2192 CCP_583.310", "to": "CCP_583.310"}, {"arrows": "to", "color": "#4CAF50", "from": "CCP_473", "label": "is_about", "title": "CCP_473 \u2192 is_about \u2192 CCP 473 - Relief from Default", "to": "CCP 473 - Relief from Default"}, {"arrows": "to", "color": "#E91E63", "from": "CCP_473", "label": "involves_entity", "title": "CCP_473 \u2192 involves_entity \u2192 property", "to": "property"}, {"arrows": "to", "color": "#E91E63", "from": "CCP_473", "label": "involves_entity", "title": "CCP_473 \u2192 involves_entity \u2192 notice", "to": "notice"}, {"arrows": "to", "color": "#E91E63", "from": "CCP_473", "label": "involves_entity", "title": "CCP_473 \u2192 involves_entity \u2192 court", "to": "court"}, {"arrows": "to", "color": "#F44336", "from": "CCP_473", "label": "has_penalty", "title": "CCP_473 \u2192 has_penalty \u2192 fine", "to": "fine"}, {"arrows": "to", "color": "#FF9800", "from": "CCP_473", "label": "mentions_amount", "title": "CCP_473 \u2192 mentions_amount \u2192 $1000", "to": "$1000"}, {"arrows": "to", "color": "#FF9800", "from": "CCP_473", "label": "mentions_amount", "title": "CCP_473 \u2192 mentions_amount \u2192 $1000", "to": "$1000"}, {"arrows": "to", "color": "#607D8B", "from": "CCP_473", "label": "mentions_date", "title": "CCP_473 \u2192 mentions_date \u2192 January 1, 1997", "to": "January 1, 1997"}, {"arrows": "to", "color": "#607D8B", "from": "CCP_473", "label": "mentions_date", "title": "CCP_473 \u2192 mentions_date \u2192 January 1, 1997", "to": "January 1, 1997"}, {"arrows": "to", "color": "#795548", "from": "CCP_473", "label": "specifies_period", "title": "CCP_473 \u2192 specifies_period \u2192 90 day", "to": "90 day"}, {"arrows": "to", "color": "#795548", "from": "CCP_473", "label": "specifies_period", "title": "CCP_473 \u2192 specifies_period \u2192 90 day", "to": "90 day"}, {"arrows": "to", "color": "#2196F3", "from": "CIV_1940", "label": "refers_to", "title": "CIV_1940 \u2192 refers_to \u2192 CIV_1137", "to": "CIV_1137"}, {"arrows": "to", "color": "#2196F3", "from": "CIV_1940", "label": "refers_to", "title": "CIV_1940 \u2192 refers_to \u2192 CIV_7280", "to": "CIV_7280"}, {"arrows": "to", "color": "#2196F3", "from": "CIV_1940", "label": "refers_to", "title": "CIV_1940 \u2192 refers_to \u2192 CIV_1860", "to": "CIV_1860"}, {"arrows": "to", "color": "#4CAF50", "from": "CIV_1940", "label": "is_about", "title": "CIV_1940 \u2192 is_about \u2192 CIV 1940 - Habitability Standards", "to": "CIV 1940 - Habitability Standards"}, {"arrows": "to", "color": "#E91E63", "from": "CIV_1940", "label": "involves_entity", "title": "CIV_1940 \u2192 involves_entity \u2192 property", "to": "property"}, {"arrows": "to", "color": "#E91E63", "from": "CIV_1940", "label": "involves_entity", "title": "CIV_1940 \u2192 involves_entity \u2192 contract", "to": "contract"}, {"arrows": "to", "color": "#607D8B", "from": "CIV_1940", "label": "mentions_date", "title": "CIV_1940 \u2192 mentions_date \u2192 September 29, 1996", "to": "September 29, 1996"}, {"arrows": "to", "color": "#607D8B", "from": "CIV_1940", "label": "mentions_date", "title": "CIV_1940 \u2192 mentions_date \u2192 September 29, 1996", "to": "September 29, 1996"}, {"arrows": "to", "color": "#4CAF50", "from": "CCP_1161", "label": "is_about", "title": "CCP_1161 \u2192 is_about \u2192 CCP 1161 - Termination of Tenancy", "to": "CCP 1161 - Termination of Tenancy"}, {"arrows": "to", "color": "#2196F3", "from": "CCP_1174", "label": "refers_to", "title": "CCP_1174 \u2192 refers_to \u2192 CCP_1965", "to": "CCP_1965"}, {"arrows": "to", "color": "#2196F3", "from": "CCP_1174", "label": "refers_to", "title": "CCP_1174 \u2192 refers_to \u2192 CCP_2099", "to": "CCP_2099"}, {"arrows": "to", "color": "#2196F3", "from": "CCP_1174", "label": "refers_to", "title": "CCP_1174 \u2192 refers_to \u2192 CCP_2080", "to": "CCP_2080"}, {"arrows": "to", "color": "#2196F3", "from": "CCP_1174", "label": "refers_to", "title": "CCP_1174 \u2192 refers_to \u2192 CCP_1990", "to": "CCP_1990"}, {"arrows": "to", "color": "#2196F3", "from": "CCP_1174", "label": "refers_to", "title": "CCP_1174 \u2192 refers_to \u2192 CCP_1988", "to": "CCP_1988"}, {"arrows": "to", "color": "#2196F3", "from": "CCP_1174", "label": "refers_to", "title": "CCP_1174 \u2192 refers_to \u2192 CCP_1980", "to": "CCP_1980"}, {"arrows": "to", "color": "#2196F3", "from": "CCP_1174", "label": "refers_to", "title": "CCP_1174 \u2192 refers_to \u2192 CCP_1161", "to": "CCP_1161"}, {"arrows": "to", "color": "#2196F3", "from": "CCP_1174", "label": "refers_to", "title": "CCP_1174 \u2192 refers_to \u2192 CCP_712.010", "to": "CCP_712.010"}, {"arrows": "to", "color": "#2196F3", "from": "CCP_1174", "label": "refers_to", "title": "CCP_1174 \u2192 refers_to \u2192 CCP_1983", "to": "CCP_1983"}, {"arrows": "to", "color": "#2196F3", "from": "CCP_1174", "label": "refers_to", "title": "CCP_1174 \u2192 refers_to \u2192 CCP_1166a", "to": "CCP_1166a"}, {"arrows": "to", "color": "#4CAF50", "from": "CCP_1174", "label": "is_about", "title": "CCP_1174 \u2192 is_about \u2192 CCP 1174 - Restitution", "to": "CCP 1174 - Restitution"}, {"arrows": "to", "color": "#E91E63", "from": "CCP_1174", "label": "involves_entity", "title": "CCP_1174 \u2192 involves_entity \u2192 notice", "to": "notice"}, {"arrows": "to", "color": "#E91E63", "from": "CCP_1174", "label": "involves_entity", "title": "CCP_1174 \u2192 involves_entity \u2192 contract", "to": "contract"}, {"arrows": "to", "color": "#E91E63", "from": "CCP_1174", "label": "involves_entity", "title": "CCP_1174 \u2192 involves_entity \u2192 eviction", "to": "eviction"}, {"arrows": "to", "color": "#E91E63", "from": "CCP_1174", "label": "involves_entity", "title": "CCP_1174 \u2192 involves_entity \u2192 landlord", "to": "landlord"}, {"arrows": "to", "color": "#E91E63", "from": "CCP_1174", "label": "involves_entity", "title": "CCP_1174 \u2192 involves_entity \u2192 property", "to": "property"}, {"arrows": "to", "color": "#E91E63", "from": "CCP_1174", "label": "involves_entity", "title": "CCP_1174 \u2192 involves_entity \u2192 court", "to": "court"}, {"arrows": "to", "color": "#E91E63", "from": "CCP_1174", "label": "involves_entity", "title": "CCP_1174 \u2192 involves_entity \u2192 tenant", "to": "tenant"}, {"arrows": "to", "color": "#F44336", "from": "CCP_1174", "label": "has_penalty", "title": "CCP_1174 \u2192 has_penalty \u2192 damages", "to": "damages"}, {"arrows": "to", "color": "#FF9800", "from": "CCP_1174", "label": "mentions_amount", "title": "CCP_1174 \u2192 mentions_amount \u2192 $600", "to": "$600"}, {"arrows": "to", "color": "#607D8B", "from": "CCP_1174", "label": "mentions_date", "title": "CCP_1174 \u2192 mentions_date \u2192 January 1, 1994", "to": "January 1, 1994"}, {"arrows": "to", "color": "#607D8B", "from": "CCP_1174", "label": "mentions_date", "title": "CCP_1174 \u2192 mentions_date \u2192 January 1, 1994", "to": "January 1, 1994"}]);
+    data = {nodes: nodes, edges: edges};
+    network = new vis.Network(container, data, options);
+  </script>
+</body>
     <body>
         <div class="card" style="width: 100%">
-            
-            
+
+
             <div id="mynetwork" class="card-body"></div>
         </div>
 
-        
-        
+
+
 
         <script type="text/javascript">
 
@@ -187,15 +227,15 @@
                   value : []
               };
 
-              
 
-              
+
+
 
               // This method is responsible for drawing the graph, returns the drawn network
               function drawGraph() {
                   var container = document.getElementById('mynetwork');
 
-                  
+
 
                   // parsing and collecting nodes and edges from the python
                   nodes = new vis.DataSet([{"color": "#4CAF50", "font": {"color": "white"}, "id": "CIV_1950.5", "label": "CIV\n1950.5", "shape": "box", "title": "CIV_1950.5"}, {"color": "#4CAF50", "font": {"color": "white"}, "id": "CIV_1950.6", "label": "CIV\n1950.6", "shape": "box", "title": "CIV_1950.6"}, {"color": "#4CAF50", "font": {"color": "white"}, "id": "CIV_116.220", "label": "CIV\n116.220", "shape": "box", "title": "CIV_116.220"}, {"color": "#4CAF50", "font": {"color": "white"}, "id": "CIV_1161", "label": "CIV\n1161", "shape": "box", "title": "CIV_1161"}, {"color": "#4CAF50", "font": {"color": "white"}, "id": "CIV_1946", "label": "CIV\n1946", "shape": "box", "title": "CIV_1946"}, {"color": "#4CAF50", "font": {"color": "white"}, "id": "CIV_400", "label": "CIV\n400", "shape": "box", "title": "CIV_400"}, {"color": "#4CAF50", "font": {"color": "white"}, "id": "CIV_780", "label": "CIV\n780", "shape": "box", "title": "CIV_780"}, {"color": "#E91E63", "font": {"color": "white"}, "id": "notice", "label": "notice", "shape": "ellipse", "title": "notice"}, {"color": "#E91E63", "font": {"color": "white"}, "id": "contract", "label": "contract", "shape": "ellipse", "title": "contract"}, {"color": "#E91E63", "font": {"color": "white"}, "id": "landlord", "label": "landlord", "shape": "ellipse", "title": "landlord"}, {"color": "#E91E63", "font": {"color": "white"}, "id": "property", "label": "property", "shape": "ellipse", "title": "property"}, {"color": "#E91E63", "font": {"color": "white"}, "id": "court", "label": "court", "shape": "ellipse", "title": "court"}, {"color": "#E91E63", "font": {"color": "white"}, "id": "tenant", "label": "tenant", "shape": "ellipse", "title": "tenant"}, {"color": "#E91E63", "font": {"color": "white"}, "id": "deposit", "label": "deposit", "shape": "ellipse", "title": "deposit"}, {"color": "#F44336", "font": {"color": "white"}, "id": "fine", "label": "fine", "shape": "hexagon", "title": "fine"}, {"color": "#F44336", "font": {"color": "white"}, "id": "damages", "label": "damages", "shape": "hexagon", "title": "damages"}, {"color": "#FF9800", "font": {"color": "white"}, "id": "$125", "label": "$125", "shape": "circle", "title": "$125"}, {"color": "#607D8B", "font": {"color": "white"}, "id": "January 1, 2003", "label": "January 1, 2003", "shape": "text", "title": "January 1, 2003"}, {"color": "#607D8B", "font": {"color": "white"}, "id": "April 1, 2025", "label": "April 1, 2025", "shape": "text", "title": "April 1, 2025"}, {"color": "#607D8B", "font": {"color": "white"}, "id": "July 1, 2024", "label": "July 1, 2024", "shape": "text", "title": "July 1, 2024"}, {"color": "#607D8B", "font": {"color": "white"}, "id": "July 1, 2025", "label": "July 1, 2025", "shape": "text", "title": "July 1, 2025"}, {"color": "#607D8B", "font": {"color": "white"}, "id": "January 1, 2025", "label": "January 1, 2025", "shape": "text", "title": "January 1, 2025"}, {"color": "#2196F3", "font": {"color": "white"}, "id": "CCP_1161a", "label": "CCP\n1161a", "shape": "box", "title": "CCP_1161a"}, {"color": "#2196F3", "font": {"color": "white"}, "id": "CCP_2924", "label": "CCP\n2924", "shape": "box", "title": "CCP_2924"}, {"color": "#2196F3", "font": {"color": "white"}, "id": "CCP_1807", "label": "CCP\n1807", "shape": "box", "title": "CCP_1807"}, {"color": "#2196F3", "font": {"color": "white"}, "id": "CCP_1162", "label": "CCP\n1162", "shape": "box", "title": "CCP_1162"}, {"color": "#2196F3", "font": {"color": "white"}, "id": "CCP_1800", "label": "CCP\n1800", "shape": "box", "title": "CCP_1800"}, {"color": "#2196F3", "font": {"color": "white"}, "id": "CCP_1803", "label": "CCP\n1803", "shape": "box", "title": "CCP_1803"}, {"color": "#9C27B0", "font": {"color": "white"}, "id": "CCP 1161a - No-fault Termination", "label": "CCP 1161a - No-fault T...", "shape": "dot", "title": "CCP 1161a - No-fault Termination"}, {"color": "#795548", "font": {"color": "white"}, "id": "30 day", "label": "30 day", "shape": "database", "title": "30 day"}, {"color": "#2196F3", "font": {"color": "white"}, "id": "CCP_473", "label": "CCP\n473", "shape": "box", "title": "CCP_473"}, {"color": "#2196F3", "font": {"color": "white"}, "id": "CCP_583.310", "label": "CCP\n583.310", "shape": "box", "title": "CCP_583.310"}, {"color": "#9C27B0", "font": {"color": "white"}, "id": "CCP 473 - Relief from Default", "label": "CCP 473 - Relief from ...", "shape": "dot", "title": "CCP 473 - Relief from Default"}, {"color": "#FF9800", "font": {"color": "white"}, "id": "$1000", "label": "$1000", "shape": "circle", "title": "$1000"}, {"color": "#607D8B", "font": {"color": "white"}, "id": "January 1, 1997", "label": "January 1, 1997", "shape": "text", "title": "January 1, 1997"}, {"color": "#795548", "font": {"color": "white"}, "id": "90 day", "label": "90 day", "shape": "database", "title": "90 day"}, {"color": "#4CAF50", "font": {"color": "white"}, "id": "CIV_1940", "label": "CIV\n1940", "shape": "box", "title": "CIV_1940"}, {"color": "#4CAF50", "font": {"color": "white"}, "id": "CIV_1137", "label": "CIV\n1137", "shape": "box", "title": "CIV_1137"}, {"color": "#4CAF50", "font": {"color": "white"}, "id": "CIV_7280", "label": "CIV\n7280", "shape": "box", "title": "CIV_7280"}, {"color": "#4CAF50", "font": {"color": "white"}, "id": "CIV_1860", "label": "CIV\n1860", "shape": "box", "title": "CIV_1860"}, {"color": "#9C27B0", "font": {"color": "white"}, "id": "CIV 1940 - Habitability Standards", "label": "CIV 1940 - Habitabilit...", "shape": "dot", "title": "CIV 1940 - Habitability Standards"}, {"color": "#607D8B", "font": {"color": "white"}, "id": "September 29, 1996", "label": "September 29, 1996", "shape": "text", "title": "September 29, 1996"}, {"color": "#2196F3", "font": {"color": "white"}, "id": "CCP_1161", "label": "CCP\n1161", "shape": "box", "title": "CCP_1161"}, {"color": "#9C27B0", "font": {"color": "white"}, "id": "CCP 1161 - Termination of Tenancy", "label": "CCP 1161 - Termination...", "shape": "dot", "title": "CCP 1161 - Termination of Tenancy"}, {"color": "#2196F3", "font": {"color": "white"}, "id": "CCP_1174", "label": "CCP\n1174", "shape": "box", "title": "CCP_1174"}, {"color": "#2196F3", "font": {"color": "white"}, "id": "CCP_1965", "label": "CCP\n1965", "shape": "box", "title": "CCP_1965"}, {"color": "#2196F3", "font": {"color": "white"}, "id": "CCP_2099", "label": "CCP\n2099", "shape": "box", "title": "CCP_2099"}, {"color": "#2196F3", "font": {"color": "white"}, "id": "CCP_2080", "label": "CCP\n2080", "shape": "box", "title": "CCP_2080"}, {"color": "#2196F3", "font": {"color": "white"}, "id": "CCP_1990", "label": "CCP\n1990", "shape": "box", "title": "CCP_1990"}, {"color": "#2196F3", "font": {"color": "white"}, "id": "CCP_1988", "label": "CCP\n1988", "shape": "box", "title": "CCP_1988"}, {"color": "#2196F3", "font": {"color": "white"}, "id": "CCP_1980", "label": "CCP\n1980", "shape": "box", "title": "CCP_1980"}, {"color": "#2196F3", "font": {"color": "white"}, "id": "CCP_712.010", "label": "CCP\n712.010", "shape": "box", "title": "CCP_712.010"}, {"color": "#2196F3", "font": {"color": "white"}, "id": "CCP_1983", "label": "CCP\n1983", "shape": "box", "title": "CCP_1983"}, {"color": "#2196F3", "font": {"color": "white"}, "id": "CCP_1166a", "label": "CCP\n1166a", "shape": "box", "title": "CCP_1166a"}, {"color": "#9C27B0", "font": {"color": "white"}, "id": "CCP 1174 - Restitution", "label": "CCP 1174 - Restitution", "shape": "dot", "title": "CCP 1174 - Restitution"}, {"color": "#E91E63", "font": {"color": "white"}, "id": "eviction", "label": "eviction", "shape": "ellipse", "title": "eviction"}, {"color": "#FF9800", "font": {"color": "white"}, "id": "$600", "label": "$600", "shape": "circle", "title": "$600"}, {"color": "#607D8B", "font": {"color": "white"}, "id": "January 1, 1994", "label": "January 1, 1994", "shape": "text", "title": "January 1, 1994"}]);
@@ -212,21 +252,21 @@
 
                   var options = {"physics": {"forceAtlas2Based": {"gravitationalConstant": -50, "springLength": 100, "springConstant": 0.05}, "minVelocity": 0.75, "solver": "forceAtlas2Based", "stabilization": {"enabled": true, "iterations": 1000, "updateInterval": 25}}};
 
-                  
 
 
-                  
+
+
 
                   network = new vis.Network(container, data, options);
 
-                  
-
-                  
-
-                  
 
 
-                  
+
+
+
+
+
+
 
                   return network;
 
