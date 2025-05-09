@@ -154,6 +154,281 @@
     </section>
 
     <section class="test-section">
+      <h2>Body Content Optimization Analysis</h2>
+      <div class="grid-container">
+        <div class="grid-item">
+          <h3>Content Structure</h3>
+          <div class="content-optimization-results">
+            <div class="resource-group">
+              <h4>Semantic HTML</h4>
+              <div class="optimization-stat" id="semantic-structure"></div>
+              <div class="optimization-stat" id="aria-attributes"></div>
+              <div class="optimization-stat" id="heading-hierarchy"></div>
+            </div>
+
+            <div class="resource-group">
+              <h4>Media Optimization</h4>
+              <div class="optimization-stat" id="image-optimization"></div>
+              <div class="optimization-stat" id="lazy-loading"></div>
+              <div class="optimization-stat" id="alt-text"></div>
+            </div>
+
+            <div class="resource-group">
+              <h4>Performance</h4>
+              <div class="optimization-stat" id="js-placement"></div>
+              <div class="optimization-stat" id="analytics-impact"></div>
+              <div class="optimization-stat" id="lcp-element"></div>
+            </div>
+
+            <div class="resource-group">
+              <h4>Accessibility</h4>
+              <div class="optimization-stat" id="aria-roles"></div>
+              <div class="optimization-stat" id="focus-management"></div>
+              <div class="optimization-stat" id="color-contrast"></div>
+            </div>
+
+            <div class="resource-group">
+              <h4>Optimization Recommendations</h4>
+              <div id="content-recommendations"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="test-section">
+      <h2>Head Section Optimization Analysis</h2>
+      <div class="grid-container">
+        <div class="grid-item">
+          <h3>Head Structure</h3>
+          <div class="head-optimization-results">
+            <div class="resource-group">
+              <h4>Basic SEO</h4>
+              <div class="optimization-stat" id="charset-status"></div>
+              <div class="optimization-stat" id="viewport-status"></div>
+              <div class="optimization-stat" id="title-status"></div>
+              <div class="optimization-stat" id="description-status"></div>
+            </div>
+
+            <div class="resource-group">
+              <h4>Social Media</h4>
+              <div class="optimization-stat" id="og-title-status"></div>
+              <div class="optimization-stat" id="og-description-status"></div>
+              <div class="optimization-stat" id="og-image-status"></div>
+              <div class="optimization-stat" id="twitter-card-status"></div>
+            </div>
+
+            <div class="resource-group">
+              <h4>Resource Optimization</h4>
+              <div class="optimization-stat" id="preload-status"></div>
+              <div class="optimization-stat" id="preconnect-status"></div>
+              <div class="optimization-stat" id="critical-css-status"></div>
+              <div class="optimization-stat" id="defer-css-status"></div>
+            </div>
+
+            <div class="resource-group">
+              <h4>Structured Data</h4>
+              <div class="optimization-stat" id="schema-status"></div>
+              <div class="optimization-stat" id="canonical-status"></div>
+              <div class="optimization-stat" id="robots-status"></div>
+            </div>
+
+            <div class="resource-group">
+              <h4>Optimization Recommendations</h4>
+              <div id="head-recommendations"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="test-section">
+      <h2>SEO Optimization Analysis</h2>
+      <div class="grid-container">
+        <div class="grid-item">
+          <h3>Protocol & Loading</h3>
+          <div class="seo-optimization-results">
+            <div class="resource-group">
+              <h4>Protocol Optimization</h4>
+              <div class="optimization-stat" id="http-version"></div>
+              <div class="optimization-stat" id="preconnect-status"></div>
+              <div class="optimization-stat" id="cache-control"></div>
+            </div>
+
+            <div class="resource-group">
+              <h4>Resource Loading</h4>
+              <div class="optimization-stat" id="critical-css"></div>
+              <div class="optimization-stat" id="js-defer"></div>
+              <div class="optimization-stat" id="image-lazy"></div>
+            </div>
+
+            <div class="resource-group">
+              <h4>Mobile Optimization</h4>
+              <div class="optimization-stat" id="mobile-score"></div>
+              <div class="optimization-stat" id="viewport-status"></div>
+              <div class="optimization-stat" id="tap-targets"></div>
+            </div>
+
+            <div class="resource-group">
+              <h4>Performance Metrics</h4>
+              <div class="optimization-stat" id="tti-score"></div>
+              <div class="optimization-stat" id="lcp-score"></div>
+              <div class="optimization-stat" id="cls-score"></div>
+            </div>
+
+            <div class="resource-group">
+              <h4>SEO Impact</h4>
+              <div class="optimization-stat" id="seo-score"></div>
+              <div class="optimization-stat" id="core-web-vitals"></div>
+              <div class="optimization-stat" id="user-experience"></div>
+            </div>
+
+            <div class="resource-group">
+              <h4>Optimization Recommendations</h4>
+              <div id="seo-recommendations"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="test-section">
+      <h2>SSR/Static Generation Analysis</h2>
+      <div class="grid-container">
+        <div class="grid-item">
+          <h3>Rendering Details</h3>
+          <div class="rendering-analysis-results">
+            <div class="resource-group">
+              <h4>Rendering Mode</h4>
+              <div class="rendering-stat" id="rendering-mode"></div>
+              <div class="rendering-stat" id="initial-hydration"></div>
+              <div class="rendering-stat" id="server-timing"></div>
+            </div>
+
+            <div class="resource-group">
+              <h4>Performance Metrics</h4>
+              <div class="rendering-stat" id="time-to-first-byte"></div>
+              <div class="rendering-stat" id="hydration-time"></div>
+              <div class="rendering-stat" id="render-blocking-resources"></div>
+            </div>
+
+            <div class="resource-group">
+              <h4>SEO Impact</h4>
+              <div class="rendering-stat" id="initial-content"></div>
+              <div class="rendering-stat" id="meta-data"></div>
+              <div class="rendering-stat" id="structured-data"></div>
+            </div>
+
+            <div class="resource-group">
+              <h4>Optimization Recommendations</h4>
+              <div id="rendering-recommendations"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="test-section">
+      <h2>LCP Optimization Analysis</h2>
+      <div class="grid-container">
+        <div class="grid-item">
+          <h3>LCP Element Analysis</h3>
+          <div class="lcp-analysis-results">
+            <div class="resource-group">
+              <h4>LCP Element Details</h4>
+              <div class="lcp-stat" id="lcp-element-type"></div>
+              <div class="lcp-stat" id="lcp-element-size"></div>
+              <div class="lcp-stat" id="lcp-load-time"></div>
+            </div>
+
+            <div class="resource-group">
+              <h4>Optimization Status</h4>
+              <div class="lcp-stat" id="lcp-priority"></div>
+              <div class="lcp-stat" id="lcp-preload"></div>
+              <div class="lcp-stat" id="lcp-lazy"></div>
+            </div>
+
+            <div class="resource-group">
+              <h4>Performance Impact</h4>
+              <div class="lcp-stat" id="lcp-score"></div>
+              <div class="lcp-stat" id="lcp-delay"></div>
+              <div class="lcp-stat" id="lcp-recommendations"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="test-section">
+      <h2>Critical Rendering Path Analysis</h2>
+      <div class="grid-container">
+        <div class="grid-item">
+          <h3>Critical Resources</h3>
+          <div class="critical-path-results">
+            <div class="resource-group">
+              <h4>Resource Statistics</h4>
+              <div class="resource-stat" id="critical-count"></div>
+              <div class="resource-stat" id="non-critical-count"></div>
+              <div class="resource-stat" id="critical-size"></div>
+            </div>
+
+            <div class="resource-group">
+              <h4>Performance Impact</h4>
+              <div class="resource-stat" id="render-blocking-js"></div>
+              <div class="resource-stat" id="render-blocking-css"></div>
+              <div class="resource-stat" id="above-the-fold"></div>
+            </div>
+
+            <div class="resource-group">
+              <h4>Optimization Recommendations</h4>
+              <div id="optimization-recommendations"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="test-section">
+      <h2>SEO Meta Tag Testing</h2>
+      <div class="grid-container">
+        <div class="grid-item">
+          <h3>Meta Tag Analysis</h3>
+          <div class="seo-test-results">
+            <div class="meta-tag-group">
+              <h4>Basic SEO</h4>
+              <div class="tag-result" id="title-result"></div>
+              <div class="tag-result" id="description-result"></div>
+              <div class="tag-result" id="viewport-result"></div>
+              <div class="tag-result" id="robots-result"></div>
+            </div>
+
+            <div class="meta-tag-group">
+              <h4>Open Graph</h4>
+              <div class="tag-result" id="og-title-result"></div>
+              <div class="tag-result" id="og-description-result"></div>
+              <div class="tag-result" id="og-image-result"></div>
+              <div class="tag-result" id="canonical-result"></div>
+            </div>
+
+            <div class="meta-tag-group">
+              <h4>Structured Data</h4>
+              <div class="tag-result" id="schema-result"></div>
+              <div class="tag-result" id="breadcrumb-result"></div>
+              <div class="tag-result" id="article-result"></div>
+            </div>
+
+            <div class="meta-tag-group">
+              <h4>Performance</h4>
+              <div class="tag-result" id="preload-result"></div>
+              <div class="tag-result" id="prefetch-result"></div>
+              <div class="tag-result" id="dns-prefetch-result"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="test-section">
       <h2>Accessibility Test</h2>
       <p>Test keyboard navigation and screen reader support:</p>
       <p>Try tabbing through elements and using screen reader</p>
@@ -178,7 +453,1611 @@
       console.log('Offline mode detected');
     });
 
-    // Test dark mode
+    // Body Content Optimization Analysis
+    function analyzeContentOptimization() {
+      const metrics = {
+        semantic: checkSemanticHTML(),
+        aria: checkARIAAttributes(),
+        headings: checkHeadingHierarchy(),
+        images: checkImageOptimization(),
+        lazyLoad: checkLazyLoading(),
+        altText: checkAltText(),
+        js: checkJSPacement(),
+        analytics: checkAnalyticsImpact(),
+        lcp: checkLCPElement(),
+        roles: checkARIARoles(),
+        focus: checkFocusManagement(),
+        contrast: checkColorContrast()
+      };
+
+      // Get recommendations
+      const recommendations = getContentOptimizationRecommendations(metrics);
+
+      // Update UI
+      updateContentOptimizationResults({
+        metrics,
+        recommendations
+      });
+    }
+
+    function checkSemanticHTML() {
+      const semanticElements = [
+        'header', 'nav', 'main', 'section', 'article', 'aside', 'footer'
+      ];
+      const missing = semanticElements.filter(element =>
+        !document.querySelector(element)
+      );
+      return {
+        missing,
+        status: missing.length === 0 ? 'success' : 'warning'
+      };
+    }
+
+    function checkARIAAttributes() {
+      const elements = document.querySelectorAll('[aria-label], [role]');
+      const valid = Array.from(elements).every(el => {
+        const role = el.getAttribute('role');
+        const label = el.getAttribute('aria-label');
+        return (!role || role === 'none') && (!label || label.trim());
+      });
+      return {
+        count: elements.length,
+        status: valid ? 'success' : 'warning'
+      };
+    }
+
+    function checkHeadingHierarchy() {
+      const headings = Array.from(document.querySelectorAll('h1, h2, h3, h4, h5, h6'));
+      const hierarchy = headings.map(h => h.tagName.toLowerCase());
+      const valid = hierarchy.every((level, i) => {
+        if (i === 0) return level === 'h1';
+        const prev = hierarchy[i - 1];
+        return parseInt(level[1]) - parseInt(prev[1]) <= 1;
+      });
+      return {
+        count: headings.length,
+        status: valid ? 'success' : 'warning'
+      };
+    }
+
+    function checkImageOptimization() {
+      const images = document.querySelectorAll('img');
+      const optimized = Array.from(images).every(img => {
+        const src = img.src;
+        const ext = src.split('.').pop().toLowerCase();
+        return ['webp', 'avif'].includes(ext);
+      });
+      return {
+        count: images.length,
+        status: optimized ? 'success' : 'warning'
+      };
+    }
+
+    function checkLazyLoading() {
+      const images = document.querySelectorAll('img');
+      const lazy = Array.from(images).filter(img =>
+        img.loading === 'lazy' && img.getBoundingClientRect().top > window.innerHeight
+      );
+      return {
+        count: lazy.length,
+        status: lazy.length > 0 ? 'success' : 'warning'
+      };
+    }
+
+    function checkAltText() {
+      const images = document.querySelectorAll('img');
+      const missing = Array.from(images).filter(img =>
+        !img.alt || img.alt.trim() === ''
+      );
+      return {
+        count: missing.length,
+        status: missing.length === 0 ? 'success' : 'warning'
+      };
+    }
+
+    function checkJSPacement() {
+      const scripts = document.querySelectorAll('script');
+      const nonDeferred = Array.from(scripts).filter(s =>
+        !s.defer && !s.async && !s.src.includes('analytics')
+      );
+      return {
+        count: nonDeferred.length,
+        status: nonDeferred.length === 0 ? 'success' : 'warning'
+      };
+    }
+
+    function checkAnalyticsImpact() {
+      const analytics = document.querySelector('script[src*="googletagmanager"]');
+      const async = analytics?.async;
+      return {
+        hasAnalytics: !!analytics,
+        async,
+        status: async ? 'success' : 'warning'
+      };
+    }
+
+    function checkLCPElement() {
+      const lcp = performance.getEntriesByType('largest-contentful-paint')[0];
+      const element = lcp ? document.querySelector(lcp.elementId) : null;
+      return {
+        element: element?.tagName || 'None',
+        status: lcp ? 'success' : 'warning'
+      };
+    }
+
+    function checkARIARoles() {
+      const roles = document.querySelectorAll('[role]');
+      const valid = Array.from(roles).every(role => {
+        const roleName = role.getAttribute('role');
+        return ['menubar', 'menuitem', 'none'].includes(roleName);
+      });
+      return {
+        count: roles.length,
+        status: valid ? 'success' : 'warning'
+      };
+    }
+
+    function checkFocusManagement() {
+      const focusable = document.querySelectorAll('a[href], button, input, select, textarea');
+      const valid = Array.from(focusable).every(el => {
+        const rect = el.getBoundingClientRect();
+        return rect.width > 0 && rect.height > 0;
+      });
+      return {
+        count: focusable.length,
+        status: valid ? 'success' : 'warning'
+      };
+    }
+
+    function checkColorContrast() {
+      const textElements = document.querySelectorAll('p, h1, h2, h3, h4, h5, h6');
+      const valid = Array.from(textElements).every(el => {
+        const color = window.getComputedStyle(el).color;
+        const bgColor = window.getComputedStyle(el).backgroundColor;
+        // Simple contrast check (not WCAG compliant, but good enough for quick check)
+        return color !== bgColor;
+      });
+      return {
+        count: textElements.length,
+        status: valid ? 'success' : 'warning'
+      };
+    }
+
+    function getContentOptimizationRecommendations(metrics) {
+      const recommendations = [];
+
+      // Semantic HTML recommendations
+      if (metrics.semantic.status !== 'success') {
+        recommendations.push('Use proper semantic HTML5 elements');
+      }
+
+      if (metrics.aria.status !== 'success') {
+        recommendations.push('Add proper ARIA attributes for accessibility');
+      }
+
+      if (metrics.headings.status !== 'success') {
+        recommendations.push('Fix heading hierarchy (H1 should be first, no skipped levels)');
+      }
+
+      // Media optimization recommendations
+      if (metrics.images.status !== 'success') {
+        recommendations.push('Optimize images to WebP format');
+      }
+
+      if (metrics.lazyLoad.status !== 'success') {
+        recommendations.push('Implement lazy loading for below-the-fold images');
+      }
+
+      if (metrics.altText.status !== 'success') {
+        recommendations.push('Add descriptive alt text to all images');
+      }
+
+      // Performance recommendations
+      if (metrics.js.status !== 'success') {
+        recommendations.push('Move non-critical JavaScript to bottom with defer');
+      }
+
+      if (metrics.analytics.status !== 'success') {
+        recommendations.push('Make analytics scripts async to reduce impact');
+      }
+
+      if (metrics.lcp.status !== 'success') {
+        recommendations.push('Optimize Largest Contentful Paint element');
+      }
+
+      // Accessibility recommendations
+      if (metrics.roles.status !== 'success') {
+        recommendations.push('Add proper ARIA roles for interactive elements');
+      }
+
+      if (metrics.focus.status !== 'success') {
+        recommendations.push('Ensure all interactive elements are focusable');
+      }
+
+      if (metrics.contrast.status !== 'success') {
+        recommendations.push('Improve text color contrast for better readability');
+      }
+
+      return recommendations;
+    }
+
+    function updateContentOptimizationResults(data) {
+      document.getElementById('semantic-structure').innerHTML = `
+        <span class="stat-label">Semantic HTML:</span>
+        <span class="stat-value"><span class="status ${data.metrics.semantic.status}">${data.metrics.semantic.missing.length} missing</span></span>
+      `;
+
+      document.getElementById('aria-attributes').innerHTML = `
+        <span class="stat-label">ARIA Attributes:</span>
+        <span class="stat-value"><span class="status ${data.metrics.aria.status}">${data.metrics.aria.count} elements</span></span>
+      `;
+
+      document.getElementById('heading-hierarchy').innerHTML = `
+        <span class="stat-label">Heading Hierarchy:</span>
+        <span class="stat-value"><span class="status ${data.metrics.headings.status}">${data.metrics.headings.count} headings</span></span>
+      `;
+
+      document.getElementById('image-optimization').innerHTML = `
+        <span class="stat-label">Image Optimization:</span>
+        <span class="stat-value"><span class="status ${data.metrics.images.status}">${data.metrics.images.count} images</span></span>
+      `;
+
+      document.getElementById('lazy-loading').innerHTML = `
+        <span class="stat-label">Lazy Loading:</span>
+        <span class="stat-value"><span class="status ${data.metrics.lazyLoad.status}">${data.metrics.lazyLoad.count} lazy loaded</span></span>
+      `;
+
+      document.getElementById('alt-text').innerHTML = `
+        <span class="stat-label">Alt Text:</span>
+        <span class="stat-value"><span class="status ${data.metrics.altText.status}">${data.metrics.altText.count} missing</span></span>
+      `;
+
+      document.getElementById('js-placement').innerHTML = `
+        <span class="stat-label">JS Placement:</span>
+        <span class="stat-value"><span class="status ${data.metrics.js.status}">${data.metrics.js.count} non-deferred</span></span>
+      `;
+
+      document.getElementById('analytics-impact').innerHTML = `
+        <span class="stat-label">Analytics Impact:</span>
+        <span class="stat-value"><span class="status ${data.metrics.analytics.status}">${data.metrics.analytics.hasAnalytics ? 'Async' : 'Missing'}</span></span>
+      `;
+
+      document.getElementById('lcp-element').innerHTML = `
+        <span class="stat-label">LCP Element:</span>
+        <span class="stat-value"><span class="status ${data.metrics.lcp.status}">${data.metrics.lcp.element}</span></span>
+      `;
+
+      document.getElementById('aria-roles').innerHTML = `
+        <span class="stat-label">ARIA Roles:</span>
+        <span class="stat-value"><span class="status ${data.metrics.roles.status}">${data.metrics.roles.count} roles</span></span>
+      `;
+
+      document.getElementById('focus-management').innerHTML = `
+        <span class="stat-label">Focus Management:</span>
+        <span class="stat-value"><span class="status ${data.metrics.focus.status}">${data.metrics.focus.count} elements</span></span>
+      `;
+
+      document.getElementById('color-contrast').innerHTML = `
+        <span class="stat-label">Color Contrast:</span>
+        <span class="stat-value"><span class="status ${data.metrics.contrast.status}">${data.metrics.contrast.count} elements</span></span>
+      `;
+
+      document.getElementById('content-recommendations').innerHTML = `
+        <h5>Recommendations:</h5>
+        ${data.recommendations.map(rec => `
+          <div class="recommendation-item">${rec}</div>
+        `).join('')}
+      `;
+    }
+
+    // Initialize content optimization analysis
+    document.addEventListener('DOMContentLoaded', () => {
+      analyzeContentOptimization();
+    });
+
+    // Head Section Optimization Analysis
+    function analyzeHeadOptimization() {
+      const metrics = {
+        charset: checkCharset(),
+        viewport: checkViewport(),
+        title: checkTitle(),
+        description: checkDescription(),
+        ogTitle: checkOGTitle(),
+        ogDescription: checkOGDescription(),
+        ogImage: checkOGImage(),
+        twitterCard: checkTwitterCard(),
+        preload: checkPreload(),
+        preconnect: checkPreconnect(),
+        criticalCSS: checkCriticalCSS(),
+        deferCSS: checkDeferCSS(),
+        schema: checkSchema(),
+        canonical: checkCanonical(),
+        robots: checkRobots()
+      };
+
+      // Get recommendations
+      const recommendations = getHeadOptimizationRecommendations(metrics);
+
+      // Update UI
+      updateHeadOptimizationResults({
+        metrics,
+        recommendations
+      });
+    }
+
+    function checkCharset() {
+      const charset = document.querySelector('meta[charset="UTF-8"]');
+      return {
+        hasCharset: !!charset,
+        status: charset ? 'success' : 'error'
+      };
+    }
+
+    function checkViewport() {
+      const viewport = document.querySelector('meta[name="viewport"]');
+      const hasViewport = viewport && viewport.content.includes('width=device-width');
+      return {
+        hasViewport,
+        status: hasViewport ? 'success' : 'error'
+      };
+    }
+
+    function checkTitle() {
+      const title = document.title;
+      const length = title.length;
+      return {
+        title,
+        length,
+        status: length >= 10 && length <= 60 ? 'success' : 'warning'
+      };
+    }
+
+    function checkDescription() {
+      const meta = document.querySelector('meta[name="description"]');
+      const description = meta?.content || '';
+      const length = description.length;
+      return {
+        description,
+        length,
+        status: length >= 50 && length <= 160 ? 'success' : 'warning'
+      };
+    }
+
+    function checkOGTitle() {
+      const meta = document.querySelector('meta[property="og:title"]');
+      const title = meta?.content || '';
+      return {
+        title,
+        status: !!title ? 'success' : 'warning'
+      };
+    }
+
+    function checkOGDescription() {
+      const meta = document.querySelector('meta[property="og:description"]');
+      const description = meta?.content || '';
+      return {
+        description,
+        status: !!description ? 'success' : 'warning'
+      };
+    }
+
+    function checkOGImage() {
+      const meta = document.querySelector('meta[property="og:image"]');
+      const image = meta?.content || '';
+      return {
+        image,
+        status: !!image ? 'success' : 'warning'
+      };
+    }
+
+    function checkTwitterCard() {
+      const meta = document.querySelector('meta[name="twitter:card"]');
+      const card = meta?.content || '';
+      return {
+        card,
+        status: card === 'summary_large_image' ? 'success' : card ? 'warning' : 'warning'
+      };
+    }
+
+    function checkPreload() {
+      const preloads = document.querySelectorAll('link[rel="preload"]');
+      const critical = Array.from(preloads).some(p =>
+        p.as === 'image' && p.fetchpriority === 'high'
+      );
+      return {
+        count: preloads.length,
+        hasCritical: critical,
+        status: critical ? 'success' : 'warning'
+      };
+    }
+
+    function checkPreconnect() {
+      const preconnects = document.querySelectorAll('link[rel="preconnect"]');
+      const required = [
+        'https://fonts.googleapis.com',
+        'https://fonts.gstatic.com'
+      ];
+      const missing = required.filter(url =>
+        !Array.from(preconnects).some(p => p.href === url)
+      );
+      return {
+        count: preconnects.length,
+        missing,
+        status: missing.length === 0 ? 'success' : 'warning'
+      };
+    }
+
+    function checkCriticalCSS() {
+      const inline = document.querySelectorAll('style[data-critical]');
+      return {
+        hasCritical: inline.length > 0,
+        status: inline.length > 0 ? 'success' : 'warning'
+      };
+    }
+
+    function checkDeferCSS() {
+      const styles = document.querySelectorAll('link[rel="stylesheet"]');
+      const deferred = Array.from(styles).some(s =>
+        s.media === 'print' && s.onload
+      );
+      return {
+        hasDeferred: deferred,
+        status: deferred ? 'success' : 'warning'
+      };
+    }
+
+    function checkSchema() {
+      const schema = document.querySelector('script[type="application/ld+json"]');
+      return {
+        hasSchema: !!schema,
+        status: schema ? 'success' : 'warning'
+      };
+    }
+
+    function checkCanonical() {
+      const canonical = document.querySelector('link[rel="canonical"]');
+      return {
+        hasCanonical: !!canonical,
+        status: canonical ? 'success' : 'warning'
+      };
+    }
+
+    function checkRobots() {
+      const robots = document.querySelector('meta[name="robots"]');
+      const content = robots?.content || '';
+      return {
+        content,
+        status: content === 'index, follow' ? 'success' : content ? 'warning' : 'warning'
+      };
+    }
+
+    function getHeadOptimizationRecommendations(metrics) {
+      const recommendations = [];
+
+      // Basic SEO recommendations
+      if (metrics.charset.status !== 'success') {
+        recommendations.push('Add UTF-8 charset declaration at the start of head');
+      }
+
+      if (metrics.viewport.status !== 'success') {
+        recommendations.push('Add proper viewport meta tag for mobile optimization');
+      }
+
+      if (metrics.title.status !== 'success') {
+        recommendations.push('Optimize page title length (10-60 characters)');
+      }
+
+      if (metrics.description.status !== 'success') {
+        recommendations.push('Optimize meta description length (50-160 characters)');
+      }
+
+      // Social media recommendations
+      if (metrics.ogTitle.status !== 'success') {
+        recommendations.push('Add Open Graph title meta tag');
+      }
+
+      if (metrics.ogDescription.status !== 'success') {
+        recommendations.push('Add Open Graph description meta tag');
+      }
+
+      if (metrics.ogImage.status !== 'success') {
+        recommendations.push('Add Open Graph image meta tag');
+      }
+
+      if (metrics.twitterCard.status !== 'success') {
+        recommendations.push('Add Twitter Card meta tags');
+      }
+
+      // Resource optimization recommendations
+      if (metrics.preload.status !== 'success') {
+        recommendations.push('Preload critical resources with fetchpriority="high"');
+      }
+
+      if (metrics.preconnect.status !== 'success') {
+        recommendations.push('Add preconnect hints for critical domains');
+      }
+
+      if (metrics.criticalCSS.status !== 'success') {
+        recommendations.push('Inline critical CSS for above-the-fold content');
+      }
+
+      if (metrics.deferCSS.status !== 'success') {
+        recommendations.push('Defer non-critical CSS using media="print" onload="this.media='all'"');
+      }
+
+      // Structured data recommendations
+      if (metrics.schema.status !== 'success') {
+        recommendations.push('Add structured data markup');
+      }
+
+      if (metrics.canonical.status !== 'success') {
+        recommendations.push('Add canonical URL meta tag');
+      }
+
+      if (metrics.robots.status !== 'success') {
+        recommendations.push('Add proper robots meta tag');
+      }
+
+      return recommendations;
+    }
+
+    function updateHeadOptimizationResults(data) {
+      document.getElementById('charset-status').innerHTML = `
+        <span class="stat-label">Charset:</span>
+        <span class="stat-value"><span class="status ${data.metrics.charset.status}">${data.metrics.charset.hasCharset ? 'UTF-8' : 'Missing'}</span></span>
+      `;
+
+      document.getElementById('viewport-status').innerHTML = `
+        <span class="stat-label">Viewport:</span>
+        <span class="stat-value"><span class="status ${data.metrics.viewport.status}">${data.metrics.viewport.hasViewport ? 'Configured' : 'Missing'}</span></span>
+      `;
+
+      document.getElementById('title-status').innerHTML = `
+        <span class="stat-label">Title:</span>
+        <span class="stat-value"><span class="status ${data.metrics.title.status}">${data.metrics.title.title} (${data.metrics.title.length} chars)</span></span>
+      `;
+
+      document.getElementById('description-status').innerHTML = `
+        <span class="stat-label">Description:</span>
+        <span class="stat-value"><span class="status ${data.metrics.description.status}">${data.metrics.description.length} chars</span></span>
+      `;
+
+      document.getElementById('og-title-status').innerHTML = `
+        <span class="stat-label">OG Title:</span>
+        <span class="stat-value"><span class="status ${data.metrics.ogTitle.status}">${data.metrics.ogTitle.title || 'Missing'}</span></span>
+      `;
+
+      document.getElementById('og-description-status').innerHTML = `
+        <span class="stat-label">OG Description:</span>
+        <span class="stat-value"><span class="status ${data.metrics.ogDescription.status}">${data.metrics.ogDescription.description || 'Missing'}</span></span>
+      `;
+
+      document.getElementById('og-image-status').innerHTML = `
+        <span class="stat-label">OG Image:</span>
+        <span class="stat-value"><span class="status ${data.metrics.ogImage.status}">${data.metrics.ogImage.image || 'Missing'}</span></span>
+      `;
+
+      document.getElementById('twitter-card-status').innerHTML = `
+        <span class="stat-label">Twitter Card:</span>
+        <span class="stat-value"><span class="status ${data.metrics.twitterCard.status}">${data.metrics.twitterCard.card || 'Missing'}</span></span>
+      `;
+
+      document.getElementById('preload-status').innerHTML = `
+        <span class="stat-label">Preload:</span>
+        <span class="stat-value"><span class="status ${data.metrics.preload.status}">${data.metrics.preload.count} resources</span></span>
+      `;
+
+      document.getElementById('preconnect-status').innerHTML = `
+        <span class="stat-label">Preconnect:</span>
+        <span class="stat-value"><span class="status ${data.metrics.preconnect.status}">${data.metrics.preconnect.count} origins</span></span>
+      `;
+
+      document.getElementById('critical-css-status').innerHTML = `
+        <span class="stat-label">Critical CSS:</span>
+        <span class="stat-value"><span class="status ${data.metrics.criticalCSS.status}">${data.metrics.criticalCSS.hasCritical ? 'Enabled' : 'Missing'}</span></span>
+      `;
+
+      document.getElementById('defer-css-status').innerHTML = `
+        <span class="stat-label">Defer CSS:</span>
+        <span class="stat-value"><span class="status ${data.metrics.deferCSS.status}">${data.metrics.deferCSS.hasDeferred ? 'Enabled' : 'Missing'}</span></span>
+      `;
+
+      document.getElementById('schema-status').innerHTML = `
+        <span class="stat-label">Schema:</span>
+        <span class="stat-value"><span class="status ${data.metrics.schema.status}">${data.metrics.schema.hasSchema ? 'Present' : 'Missing'}</span></span>
+      `;
+
+      document.getElementById('canonical-status').innerHTML = `
+        <span class="stat-label">Canonical:</span>
+        <span class="stat-value"><span class="status ${data.metrics.canonical.status}">${data.metrics.canonical.hasCanonical ? 'Present' : 'Missing'}</span></span>
+      `;
+
+      document.getElementById('robots-status').innerHTML = `
+        <span class="stat-label">Robots:</span>
+        <span class="stat-value"><span class="status ${data.metrics.robots.status}">${data.metrics.robots.content || 'Missing'}</span></span>
+      `;
+
+      document.getElementById('head-recommendations').innerHTML = `
+        <h5>Recommendations:</h5>
+        ${data.recommendations.map(rec => `
+          <div class="recommendation-item">${rec}</div>
+        `).join('')}
+      `;
+    }
+
+    // Initialize head optimization analysis
+    document.addEventListener('DOMContentLoaded', () => {
+      analyzeHeadOptimization();
+    });
+
+    // SEO Optimization Analysis
+    function analyzeSEO() {
+      const metrics = {
+        httpVersion: checkHTTPVersion(),
+        preconnect: checkPreconnect(),
+        cacheControl: checkCacheControl(),
+        criticalCSS: checkCriticalCSS(),
+        jsDefer: checkJSDefer(),
+        imageLazy: checkImageLazy(),
+        mobileScore: checkMobileScore(),
+        viewportStatus: checkViewport(),
+        tapTargets: checkTapTargets(),
+        ttiScore: checkTTI(),
+        lcpScore: checkLCP(),
+        clsScore: checkCLS(),
+        seoScore: calculateSEOScore(),
+        coreWebVitals: checkCoreWebVitals(),
+        userExperience: checkUserExperience()
+      };
+
+      // Get recommendations
+      const recommendations = getSEORenderingRecommendations(metrics);
+
+      // Update UI
+      updateSEOResults({
+        metrics,
+        recommendations
+      });
+    }
+
+    function checkHTTPVersion() {
+      const protocol = window.location.protocol;
+      const status = protocol === 'https:' ? 'success' : 'warning';
+      return { version: protocol, status };
+    }
+
+    function checkPreconnect() {
+      const preconnects = document.querySelectorAll('link[rel="preconnect"]');
+      const requiredPreconnects = [
+        'https://fonts.googleapis.com',
+        'https://analytics.google.com'
+      ];
+      const missing = requiredPreconnects.filter(url =>
+        !Array.from(preconnects).some(p => p.href === url)
+      );
+      return {
+        count: preconnects.length,
+        missing,
+        status: missing.length === 0 ? 'success' : 'warning'
+      };
+    }
+
+    function checkCacheControl() {
+      const headers = performance.getEntriesByType('resource');
+      const cacheable = headers.filter(h => h.responseHeaders &&
+        h.responseHeaders.includes('Cache-Control')
+      );
+      return {
+        count: cacheable.length,
+        status: cacheable.length > 0 ? 'success' : 'warning'
+      };
+    }
+
+    function checkCriticalCSS() {
+      const inlineStyles = document.querySelectorAll('style[data-critical]');
+      const status = inlineStyles.length > 0 ? 'success' : 'warning';
+      return { hasCriticalCSS: inlineStyles.length > 0, status };
+    }
+
+    function checkJSDefer() {
+      const scripts = document.querySelectorAll('script');
+      const nonDeferred = Array.from(scripts).filter(s =>
+        !s.async && !s.defer && !s.src.includes('analytics')
+      );
+      return {
+        count: nonDeferred.length,
+        status: nonDeferred.length === 0 ? 'success' : 'warning'
+      };
+    }
+
+    function checkImageLazy() {
+      const images = document.querySelectorAll('img');
+      const lazyImages = Array.from(images).filter(img =>
+        img.loading === 'lazy' && img.getBoundingClientRect().top > window.innerHeight
+      );
+      return {
+        count: lazyImages.length,
+        status: lazyImages.length > 0 ? 'success' : 'warning'
+      };
+    }
+
+    function checkMobileScore() {
+      const viewport = document.querySelector('meta[name="viewport"]');
+      const tapTargets = document.querySelectorAll('[tabindex]');
+      const score = calculateMobileScore(viewport, tapTargets);
+      return {
+        score,
+        status: score >= 90 ? 'success' : score >= 70 ? 'warning' : 'error'
+      };
+    }
+
+    function checkViewport() {
+      const viewport = document.querySelector('meta[name="viewport"]');
+      const hasViewport = viewport && viewport.content.includes('width=device-width');
+      return {
+        hasViewport,
+        status: hasViewport ? 'success' : 'error'
+      };
+    }
+
+    function checkTapTargets() {
+      const tapTargets = document.querySelectorAll('[tabindex]');
+      const smallTargets = Array.from(tapTargets).filter(target => {
+        const rect = target.getBoundingClientRect();
+        return rect.width < 48 || rect.height < 48;
+      });
+      return {
+        count: smallTargets.length,
+        status: smallTargets.length === 0 ? 'success' : 'warning'
+      };
+    }
+
+    function checkTTI() {
+      const tti = performance.getEntriesByName('first-input')[0];
+      const score = tti ? Math.round(tti.processingStart - tti.startTime) : 0;
+      return {
+        score,
+        status: score < 100 ? 'success' : score < 300 ? 'warning' : 'error'
+      };
+    }
+
+    function checkLCP() {
+      const lcp = performance.getEntriesByType('largest-contentful-paint')[0];
+      const score = lcp ? Math.round(lcp.renderTime - lcp.startTime) : 0;
+      return {
+        score,
+        status: score < 2500 ? 'success' : score < 4000 ? 'warning' : 'error'
+      };
+    }
+
+    function checkCLS() {
+      const cls = performance.getEntriesByType('layout-shift')[0];
+      const score = cls ? cls.value : 0;
+      return {
+        score,
+        status: score < 0.1 ? 'success' : score < 0.25 ? 'warning' : 'error'
+      };
+    }
+
+    function calculateSEOScore(metrics) {
+      const score = Math.round(
+        (metrics.httpVersion.status === 'success' ? 1 : 0) * 10 +
+        (metrics.preconnect.status === 'success' ? 1 : 0) * 10 +
+        (metrics.cacheControl.status === 'success' ? 1 : 0) * 10 +
+        (metrics.criticalCSS.status === 'success' ? 1 : 0) * 10 +
+        (metrics.jsDefer.status === 'success' ? 1 : 0) * 10 +
+        (metrics.imageLazy.status === 'success' ? 1 : 0) * 10 +
+        (metrics.mobileScore.status === 'success' ? 1 : 0) * 10 +
+        (metrics.viewportStatus.status === 'success' ? 1 : 0) * 10 +
+        (metrics.tapTargets.status === 'success' ? 1 : 0) * 10 +
+        (metrics.ttiScore.status === 'success' ? 1 : 0) * 10 +
+        (metrics.lcpScore.status === 'success' ? 1 : 0) * 10 +
+        (metrics.clsScore.status === 'success' ? 1 : 0) * 10
+      );
+      return {
+        score,
+        status: score >= 90 ? 'success' : score >= 70 ? 'warning' : 'error'
+      };
+    }
+
+    function checkCoreWebVitals(metrics) {
+      const score = Math.round(
+        (metrics.ttiScore.status === 'success' ? 1 : 0) * 33.33 +
+        (metrics.lcpScore.status === 'success' ? 1 : 0) * 33.33 +
+        (metrics.clsScore.status === 'success' ? 1 : 0) * 33.33
+      );
+      return {
+        score,
+        status: score >= 90 ? 'success' : score >= 70 ? 'warning' : 'error'
+      };
+    }
+
+    function checkUserExperience(metrics) {
+      const score = Math.round(
+        (metrics.mobileScore.status === 'success' ? 1 : 0) * 33.33 +
+        (metrics.viewportStatus.status === 'success' ? 1 : 0) * 33.33 +
+        (metrics.tapTargets.status === 'success' ? 1 : 0) * 33.33
+      );
+      return {
+        score,
+        status: score >= 90 ? 'success' : score >= 70 ? 'warning' : 'error'
+      };
+    }
+
+    function getSEORenderingRecommendations(metrics) {
+      const recommendations = [];
+
+      // Protocol recommendations
+      if (metrics.httpVersion.status !== 'success') {
+        recommendations.push('Enable HTTPS for better security and performance');
+      }
+
+      // Resource loading recommendations
+      if (metrics.preconnect.status !== 'success') {
+        recommendations.push('Add preconnect hints for critical origins');
+      }
+
+      if (metrics.cacheControl.status !== 'success') {
+        recommendations.push('Implement proper Cache-Control headers');
+      }
+
+      // Critical resources recommendations
+      if (metrics.criticalCSS.status !== 'success') {
+        recommendations.push('Inline critical CSS to reduce render-blocking resources');
+      }
+
+      if (metrics.jsDefer.status !== 'success') {
+        recommendations.push('Defer non-critical JavaScript to improve TTI');
+      }
+
+      if (metrics.imageLazy.status !== 'success') {
+        recommendations.push('Implement lazy loading for below-fold images');
+      }
+
+      // Mobile optimization recommendations
+      if (metrics.mobileScore.status !== 'success') {
+        recommendations.push('Optimize for mobile-first indexing');
+      }
+
+      if (metrics.viewportStatus.status !== 'success') {
+        recommendations.push('Add proper viewport meta tag');
+      }
+
+      if (metrics.tapTargets.status !== 'success') {
+        recommendations.push('Ensure tap targets are large enough for mobile users');
+      }
+
+      // Performance recommendations
+      if (metrics.ttiScore.status !== 'success') {
+        recommendations.push('Optimize Time to Interactive');
+      }
+
+      if (metrics.lcpScore.status !== 'success') {
+        recommendations.push('Improve Largest Contentful Paint');
+      }
+
+      if (metrics.clsScore.status !== 'success') {
+        recommendations.push('Reduce Cumulative Layout Shift');
+      }
+
+      return recommendations;
+    }
+
+    function updateSEOResults(data) {
+      document.getElementById('http-version').innerHTML = `
+        <span class="stat-label">HTTP Version:</span>
+        <span class="stat-value"><span class="status ${data.metrics.httpVersion.status}">${data.metrics.httpVersion.version}</span></span>
+      `;
+
+      document.getElementById('preconnect-status').innerHTML = `
+        <span class="stat-label">Preconnect:</span>
+        <span class="stat-value"><span class="status ${data.metrics.preconnect.status}">${data.metrics.preconnect.count} origins</span></span>
+      `;
+
+      document.getElementById('cache-control').innerHTML = `
+        <span class="stat-label">Cache Control:</span>
+        <span class="stat-value"><span class="status ${data.metrics.cacheControl.status}">${data.metrics.cacheControl.count} resources</span></span>
+      `;
+
+      document.getElementById('critical-css').innerHTML = `
+        <span class="stat-label">Critical CSS:</span>
+        <span class="stat-value"><span class="status ${data.metrics.criticalCSS.status}">${data.metrics.criticalCSS.hasCriticalCSS ? 'Enabled' : 'Missing'}</span></span>
+      `;
+
+      document.getElementById('js-defer').innerHTML = `
+        <span class="stat-label">JS Defer:</span>
+        <span class="stat-value"><span class="status ${data.metrics.jsDefer.status}">${data.metrics.jsDefer.count} non-deferred</span></span>
+      `;
+
+      document.getElementById('image-lazy').innerHTML = `
+        <span class="stat-label">Image Lazy:</span>
+        <span class="stat-value"><span class="status ${data.metrics.imageLazy.status}">${data.metrics.imageLazy.count} lazy loaded</span></span>
+      `;
+
+      document.getElementById('mobile-score').innerHTML = `
+        <span class="stat-label">Mobile Score:</span>
+        <span class="stat-value"><span class="status ${data.metrics.mobileScore.status}">${data.metrics.mobileScore.score}%</span></span>
+      `;
+
+      document.getElementById('viewport-status').innerHTML = `
+        <span class="stat-label">Viewport:</span>
+        <span class="stat-value"><span class="status ${data.metrics.viewportStatus.status}">${data.metrics.viewportStatus.hasViewport ? 'Configured' : 'Missing'}</span></span>
+      `;
+
+      document.getElementById('tap-targets').innerHTML = `
+        <span class="stat-label">Tap Targets:</span>
+        <span class="stat-value"><span class="status ${data.metrics.tapTargets.status}">${data.metrics.tapTargets.count} small</span></span>
+      `;
+
+      document.getElementById('tti-score').innerHTML = `
+        <span class="stat-label">TTI:</span>
+        <span class="stat-value"><span class="status ${data.metrics.ttiScore.status}">${data.metrics.ttiScore.score}ms</span></span>
+      `;
+
+      document.getElementById('lcp-score').innerHTML = `
+        <span class="stat-label">LCP:</span>
+        <span class="stat-value"><span class="status ${data.metrics.lcpScore.status}">${data.metrics.lcpScore.score}ms</span></span>
+      `;
+
+      document.getElementById('cls-score').innerHTML = `
+        <span class="stat-label">CLS:</span>
+        <span class="stat-value"><span class="status ${data.metrics.clsScore.status}">${data.metrics.clsScore.score}</span></span>
+      `;
+
+      document.getElementById('seo-score').innerHTML = `
+        <span class="stat-label">SEO Score:</span>
+        <span class="stat-value"><span class="status ${data.metrics.seoScore.status}">${data.metrics.seoScore.score}%</span></span>
+      `;
+
+      document.getElementById('core-web-vitals').innerHTML = `
+        <span class="stat-label">Core Web Vitals:</span>
+        <span class="stat-value"><span class="status ${data.metrics.coreWebVitals.status}">${data.metrics.coreWebVitals.score}%</span></span>
+      `;
+
+      document.getElementById('user-experience').innerHTML = `
+        <span class="stat-label">User Experience:</span>
+        <span class="stat-value"><span class="status ${data.metrics.userExperience.status}">${data.metrics.userExperience.score}%</span></span>
+      `;
+
+      document.getElementById('seo-recommendations').innerHTML = `
+        <h5>Recommendations:</h5>
+        ${data.recommendations.map(rec => `
+          <div class="recommendation-item">${rec}</div>
+        `).join('')}
+      `;
+    }
+
+    // Initialize SEO analysis
+    document.addEventListener('DOMContentLoaded', () => {
+      analyzeSEO();
+    });
+
+    // SSR/Static Generation Analysis
+    function analyzeRendering() {
+      const metrics = {
+        isPrerendered: document.querySelector('meta[name="prerendering"]') !== null,
+        renderingMode: getRenderingMode(),
+        initialHydration: getInitialHydrationTime(),
+        serverTiming: getServerTiming(),
+        timeToFirstByte: getTimeToFirstByte(),
+        hydrationTime: getHydrationTime(),
+        renderBlockingResources: getRenderBlockingResources(),
+        initialContent: checkInitialContent(),
+        metaData: checkMetaData(),
+        structuredData: checkStructuredData()
+      };
+
+      // Get recommendations
+      const recommendations = getRenderingRecommendations(metrics);
+
+      // Update UI
+      updateRenderingResults({
+        metrics,
+        recommendations
+      });
+    }
+
+    function getRenderingMode() {
+      const mode = document.querySelector('meta[name="rendering-mode"]')?.content || 'unknown';
+      const status = mode === 'ssr' || mode === 'static' ? 'success' : 'warning';
+      return { mode, status };
+    }
+
+    function getInitialHydrationTime() {
+      const hydrationStart = performance.getEntriesByName('hydrationStart')[0];
+      const hydrationEnd = performance.getEntriesByName('hydrationEnd')[0];
+      if (hydrationStart && hydrationEnd) {
+        return {
+          time: Math.round(hydrationEnd.startTime - hydrationStart.startTime),
+          status: hydrationEnd.startTime - hydrationStart.startTime < 1000 ? 'success' : 'warning'
+        };
+      }
+      return { time: 0, status: 'info' };
+    }
+
+    function getServerTiming() {
+      const timing = performance.getEntriesByType('navigation')[0];
+      if (timing && timing.serverTiming) {
+        const serverTime = timing.serverTiming.find(t => t.name === 'server')?.duration || 0;
+        return {
+          time: Math.round(serverTime),
+          status: serverTime < 200 ? 'success' : serverTime < 500 ? 'warning' : 'error'
+        };
+      }
+      return { time: 0, status: 'info' };
+    }
+
+    function getTimeToFirstByte() {
+      const timing = performance.getEntriesByType('navigation')[0];
+      if (timing) {
+        return {
+          time: Math.round(timing.responseStart - timing.requestStart),
+          status: timing.responseStart - timing.requestStart < 100 ? 'success' : 'warning'
+        };
+      }
+      return { time: 0, status: 'info' };
+    }
+
+    function getHydrationTime() {
+      const hydrationStart = performance.getEntriesByName('hydrationStart')[0];
+      const hydrationEnd = performance.getEntriesByName('hydrationEnd')[0];
+      if (hydrationStart && hydrationEnd) {
+        return {
+          time: Math.round(hydrationEnd.startTime - hydrationStart.startTime),
+          status: hydrationEnd.startTime - hydrationStart.startTime < 1000 ? 'success' : 'warning'
+        };
+      }
+      return { time: 0, status: 'info' };
+    }
+
+    function getRenderBlockingResources() {
+      const resources = performance.getEntriesByType('resource');
+      const renderBlocking = resources.filter(r =>
+        r.name.endsWith('.css') ||
+        (r.name.endsWith('.js') && !r.async && !r.defer)
+      );
+      return {
+        count: renderBlocking.length,
+        status: renderBlocking.length <= 3 ? 'success' : 'warning'
+      };
+    }
+
+    function checkInitialContent() {
+      const initialContent = document.querySelector('body').textContent.trim();
+      return {
+        hasContent: !!initialContent,
+        status: initialContent ? 'success' : 'error'
+      };
+    }
+
+    function checkMetaData() {
+      const metaTags = document.querySelectorAll('meta');
+      const hasRequiredTags = metaTags.length > 0;
+      return {
+        hasTags: hasRequiredTags,
+        status: hasRequiredTags ? 'success' : 'error'
+      };
+    }
+
+    function checkStructuredData() {
+      const schema = document.querySelector('script[type="application/ld+json"]');
+      return {
+        hasSchema: !!schema,
+        status: schema ? 'success' : 'warning'
+      };
+    }
+
+    function getRenderingRecommendations(metrics) {
+      const recommendations = [];
+
+      // Rendering mode recommendations
+      if (metrics.renderingMode.status !== 'success') {
+        recommendations.push('Consider implementing SSR or Static Generation for better performance');
+      }
+
+      // Hydration recommendations
+      if (metrics.initialHydration.status !== 'success') {
+        recommendations.push('Optimize hydration process to reduce client-side rendering time');
+      }
+
+      // Server timing recommendations
+      if (metrics.serverTiming.status !== 'success') {
+        recommendations.push('Optimize server-side rendering time');
+      }
+
+      // Content recommendations
+      if (!metrics.initialContent.hasContent) {
+        recommendations.push('Ensure initial HTML contains meaningful content');
+      }
+
+      // Meta data recommendations
+      if (!metrics.metaData.hasTags) {
+        recommendations.push('Add essential meta tags for SEO');
+      }
+
+      // Structured data recommendations
+      if (!metrics.structuredData.hasSchema) {
+        recommendations.push('Add structured data markup for better SEO');
+      }
+
+      return recommendations;
+    }
+
+    function updateRenderingResults(data) {
+      document.getElementById('rendering-mode').innerHTML = `
+        <span class="stat-label">Rendering Mode:</span>
+        <span class="stat-value"><span class="status ${data.metrics.renderingMode.status}">${data.metrics.renderingMode.mode}</span></span>
+      `;
+
+      document.getElementById('initial-hydration').innerHTML = `
+        <span class="stat-label">Initial Hydration:</span>
+        <span class="stat-value"><span class="status ${data.metrics.initialHydration.status}">${data.metrics.initialHydration.time}ms</span></span>
+      `;
+
+      document.getElementById('server-timing').innerHTML = `
+        <span class="stat-label">Server Timing:</span>
+        <span class="stat-value"><span class="status ${data.metrics.serverTiming.status}">${data.metrics.serverTiming.time}ms</span></span>
+      `;
+
+      document.getElementById('time-to-first-byte').innerHTML = `
+        <span class="stat-label">Time to First Byte:</span>
+        <span class="stat-value"><span class="status ${data.metrics.timeToFirstByte.status}">${data.metrics.timeToFirstByte.time}ms</span></span>
+      `;
+
+      document.getElementById('hydration-time').innerHTML = `
+        <span class="stat-label">Hydration Time:</span>
+        <span class="stat-value"><span class="status ${data.metrics.hydrationTime.status}">${data.metrics.hydrationTime.time}ms</span></span>
+      `;
+
+      document.getElementById('render-blocking-resources').innerHTML = `
+        <span class="stat-label">Render-Blocking Resources:</span>
+        <span class="stat-value"><span class="status ${data.metrics.renderBlockingResources.status}">${data.metrics.renderBlockingResources.count}</span></span>
+      `;
+
+      document.getElementById('initial-content').innerHTML = `
+        <span class="stat-label">Initial Content:</span>
+        <span class="stat-value"><span class="status ${data.metrics.initialContent.status}">${data.metrics.initialContent.hasContent ? 'Present' : 'Missing'}</span></span>
+      `;
+
+      document.getElementById('meta-data').innerHTML = `
+        <span class="stat-label">Meta Data:</span>
+        <span class="stat-value"><span class="status ${data.metrics.metaData.status}">${data.metrics.metaData.hasTags ? 'Complete' : 'Incomplete'}</span></span>
+      `;
+
+      document.getElementById('structured-data').innerHTML = `
+        <span class="stat-label">Structured Data:</span>
+        <span class="stat-value"><span class="status ${data.metrics.structuredData.status}">${data.metrics.structuredData.hasSchema ? 'Present' : 'Missing'}</span></span>
+      `;
+
+      document.getElementById('rendering-recommendations').innerHTML = `
+        <h5>Recommendations:</h5>
+        ${data.recommendations.map(rec => `
+          <div class="recommendation-item">${rec}</div>
+        `).join('')}
+      `;
+    }
+
+    // Initialize rendering analysis
+    document.addEventListener('DOMContentLoaded', () => {
+      analyzeRendering();
+    });
+
+    // LCP Optimization Analysis
+    function analyzeLCP() {
+      // Create PerformanceObserver for LCP
+      const observer = new PerformanceObserver((entryList) => {
+        const entries = entryList.getEntries();
+        if (entries.length > 0) {
+          const lcpEntry = entries[0];
+          const lcpElement = lcpEntry.element;
+
+          if (lcpElement) {
+            // Get LCP element details
+            const elementType = lcpElement.tagName;
+            const elementSize = lcpEntry.renderTime - lcpEntry.startTime;
+            const loadTime = lcpEntry.loadTime;
+
+            // Analyze optimizations
+            const optimizations = {
+              priority: lcpElement.fetchpriority === 'high' ? 'success' : 'warning',
+              preload: document.querySelector(`link[href="${lcpElement.src}"][rel="preload"]`) ? 'success' : 'warning',
+              lazy: lcpElement.loading === 'lazy' ? 'success' : 'warning'
+            };
+
+            // Calculate performance impact
+            const performanceImpact = {
+              score: calculateLCPScore(elementSize, loadTime),
+              delay: calculateLPDelay(elementSize, loadTime)
+            };
+
+            // Get recommendations
+            const recommendations = getLCPRecommendations(lcpElement, optimizations);
+
+            // Update UI
+            updateLCPResults({
+              elementType,
+              elementSize,
+              loadTime,
+              optimizations,
+              performanceImpact,
+              recommendations
+            });
+          }
+        }
+      });
+
+      // Observe LCP entries
+      observer.observe({ entryTypes: ['largest-contentful-paint'] });
+    }
+
+    function calculateLCPScore(size, loadTime) {
+      const score = Math.min(100, Math.max(0, 100 - (size / 10000) - (loadTime / 1000)));
+      return Math.round(score);
+    }
+
+    function calculateLPDelay(size, loadTime) {
+      const delay = Math.max(0, (size / 10000) + (loadTime / 1000) - 2.5);
+      return Math.round(delay * 100) / 100;
+    }
+
+    function getLCPRecommendations(element, optimizations) {
+      const recommendations = [];
+
+      // Priority optimization
+      if (optimizations.priority !== 'success') {
+        recommendations.push('Add fetchpriority="high" for LCP element');
+      }
+
+      // Preload optimization
+      if (optimizations.preload !== 'success') {
+        recommendations.push('Add preload hint for LCP element');
+      }
+
+      // Lazy loading optimization
+      if (element.tagName === 'IMG' && optimizations.lazy !== 'success') {
+        recommendations.push('Consider adding loading="lazy" for non-critical images');
+      }
+
+      // Size optimization
+      if (element.tagName === 'IMG' && element.naturalWidth > 1920) {
+        recommendations.push('Consider using responsive images');
+      }
+
+      return recommendations;
+    }
+
+    function updateLCPResults(data) {
+      document.getElementById('lcp-element-type').innerHTML = `
+        <span class="stat-label">Element Type:</span>
+        <span class="stat-value">${data.elementType}</span>
+      `;
+
+      document.getElementById('lcp-element-size').innerHTML = `
+        <span class="stat-label">Element Size:</span>
+        <span class="stat-value">${Math.round(data.elementSize)}ms</span>
+      `;
+
+      document.getElementById('lcp-load-time').innerHTML = `
+        <span class="stat-label">Load Time:</span>
+        <span class="stat-value">${Math.round(data.loadTime)}ms</span>
+      `;
+
+      document.getElementById('lcp-priority').innerHTML = `
+        <span class="stat-label">Priority:</span>
+        <span class="stat-value"><span class="status ${data.optimizations.priority}">${data.optimizations.priority === 'success' ? 'Optimized' : 'Needs Optimization'}</span></span>
+      `;
+
+      document.getElementById('lcp-preload').innerHTML = `
+        <span class="stat-label">Preload:</span>
+        <span class="stat-value"><span class="status ${data.optimizations.preload}">${data.optimizations.preload === 'success' ? 'Optimized' : 'Needs Optimization'}</span></span>
+      `;
+
+      document.getElementById('lcp-lazy').innerHTML = `
+        <span class="stat-label">Lazy Loading:</span>
+        <span class="stat-value"><span class="status ${data.optimizations.lazy}">${data.optimizations.lazy === 'success' ? 'Optimized' : 'Needs Optimization'}</span></span>
+      `;
+
+      document.getElementById('lcp-score').innerHTML = `
+        <span class="stat-label">Performance Score:</span>
+        <span class="stat-value">${data.performanceImpact.score}%</span>
+      `;
+
+      document.getElementById('lcp-delay').innerHTML = `
+        <span class="stat-label">Perceived Delay:</span>
+        <span class="stat-value">${data.performanceImpact.delay}s</span>
+      `;
+
+      document.getElementById('lcp-recommendations').innerHTML = `
+        <h5>Recommendations:</h5>
+        ${data.recommendations.map(rec => `
+          <div class="recommendation-item">${rec}</div>
+        `).join('')}
+      `;
+    }
+
+    // Initialize LCP analysis
+    document.addEventListener('DOMContentLoaded', () => {
+      analyzeLCP();
+    });
+
+    // Critical Rendering Path Analysis
+    function analyzeCriticalPath() {
+      const resources = performance.getEntriesByType('resource');
+      const criticalResources = [];
+      const nonCriticalResources = [];
+      const renderBlockingJS = [];
+      const renderBlockingCSS = [];
+      const aboveTheFold = [];
+
+      resources.forEach(resource => {
+        // Check if resource is render-blocking
+        const isRenderBlocking =
+          resource.name.endsWith('.css') ||
+          (resource.name.endsWith('.js') && !resource.async && !resource.defer);
+
+        // Check if resource is used above the fold
+        const isAboveTheFold = checkIfAboveTheFold(resource.name);
+
+        if (isRenderBlocking || isAboveTheFold) {
+          criticalResources.push(resource);
+
+          if (resource.name.endsWith('.js')) {
+            renderBlockingJS.push(resource);
+          }
+          if (resource.name.endsWith('.css')) {
+            renderBlockingCSS.push(resource);
+          }
+          if (isAboveTheFold) {
+            aboveTheFold.push(resource);
+          }
+        } else {
+          nonCriticalResources.push(resource);
+        }
+      });
+
+      const recommendations = getCriticalPathRecommendations(renderBlockingJS);
+
+      // Update UI
+      updateCriticalPathResults({
+        criticalCount: criticalResources.length,
+        nonCriticalCount: nonCriticalResources.length,
+        criticalSize: (criticalResources.reduce((sum, r) => sum + (r.transferSize || 0), 0) / 1024).toFixed(2),
+        renderBlockingJS: renderBlockingJS.length,
+        renderBlockingCSS: renderBlockingCSS.length,
+        aboveTheFold: aboveTheFold.length,
+        recommendations
+      });
+
+      return {
+        criticalResources,
+        nonCriticalResources,
+        renderBlockingJS,
+        renderBlockingCSS,
+        aboveTheFold,
+        recommendations
+      };
+    }
+
+    function checkIfAboveTheFold(url) {
+      // Check if resource is referenced in above-the-fold content
+      const element = document.querySelector(`[src="${url}"]`) || document.querySelector(`[href="${url}"]`);
+      if (!element) return false;
+
+      const rect = element.getBoundingClientRect();
+      return rect.top <= window.innerHeight;
+    }
+
+    function getCriticalPathRecommendations(renderBlockingJS) {
+      const recommendations = [];
+
+      // JavaScript optimization recommendations
+      if (renderBlockingJS.length > 0) {
+        recommendations.push('Add async or defer to non-critical JavaScript files');
+      }
+
+      // CSS optimization recommendations
+      if (renderBlockingCSS.length > 0) {
+        recommendations.push('Consider splitting CSS into critical and non-critical parts');
+      }
+
+      // General recommendations
+      if (criticalResources.length > 5) {
+        recommendations.push('Consider lazy loading non-critical resources');
+      }
+
+      if (criticalSize > 100) { // More than 100KB of critical resources
+        recommendations.push('Optimize critical path resources to reduce size');
+      }
+
+      return recommendations;
+    }
+
+    function updateCriticalPathResults(data) {
+      document.getElementById('critical-count').innerHTML = `
+        <span class="stat-label">Critical Resources:</span>
+        <span class="stat-value">${data.criticalCount}</span>
+      `;
+
+      document.getElementById('non-critical-count').innerHTML = `
+        <span class="stat-label">Non-Critical Resources:</span>
+        <span class="stat-value">${data.nonCriticalCount}</span>
+      `;
+
+      document.getElementById('critical-size').innerHTML = `
+        <span class="stat-label">Critical Size:</span>
+        <span class="stat-value">${data.criticalSize} KB</span>
+      `;
+
+      document.getElementById('render-blocking-js').innerHTML = `
+        <span class="stat-label">Render-Blocking JS:</span>
+        <span class="stat-value">${data.renderBlockingJS}</span>
+      `;
+
+      document.getElementById('render-blocking-css').innerHTML = `
+        <span class="stat-label">Render-Blocking CSS:</span>
+        <span class="stat-value">${data.renderBlockingCSS}</span>
+      `;
+
+      document.getElementById('above-the-fold').innerHTML = `
+        <span class="stat-label">Above-the-Fold Resources:</span>
+        <span class="stat-value">${data.aboveTheFold}</span>
+      `;
+
+      const recommendationsDiv = document.getElementById('optimization-recommendations');
+      recommendationsDiv.innerHTML = `
+        <h5>Recommendations:</h5>
+        ${data.recommendations.map(rec => `
+          <div class="recommendation-item">${rec}</div>
+        `).join('')}
+      `;
+    }
+
+    // Initialize critical path analysis
+    document.addEventListener('DOMContentLoaded', () => {
+      analyzeCriticalPath();
+    });
+
+    // SEO Meta Tag Testing
+    function checkSEOMetaTags() {
+      const metaTags = {
+        title: document.title,
+        description: document.querySelector('meta[name="description"]')?.content,
+        canonical: document.querySelector('link[rel="canonical"]')?.href,
+        ogTitle: document.querySelector('meta[property="og:title"]')?.content,
+        ogDescription: document.querySelector('meta[property="og:description"]')?.content,
+        ogImage: document.querySelector('meta[property="og:image"]')?.content,
+        viewport: document.querySelector('meta[name="viewport"]')?.content,
+        robots: document.querySelector('meta[name="robots"]')?.content,
+        schema: document.querySelector('script[type="application/ld+json"]')?.textContent,
+        breadcrumb: document.querySelector('ol.breadcrumb')?.outerHTML,
+        article: document.querySelector('article')?.outerHTML,
+        preload: document.querySelectorAll('link[rel="preload"]').length,
+        prefetch: document.querySelectorAll('link[rel="prefetch"]').length,
+        dnsPrefetch: document.querySelectorAll('link[rel="dns-prefetch"]').length
+      };
+
+      const issues = [];
+      const results = {};
+
+      // Basic SEO Checks
+      results.title = {
+        status: metaTags.title && metaTags.title.length >= 10 ? 'success' : 'error',
+        message: metaTags.title ? `Title length: ${metaTags.title.length} characters` : 'Title missing'
+      };
+
+      results.description = {
+        status: metaTags.description ? 'success' : 'error',
+        message: metaTags.description ? `Description length: ${metaTags.description.length} characters` : 'Description missing'
+      };
+
+      results.viewport = {
+        status: metaTags.viewport ? 'success' : 'error',
+        message: metaTags.viewport || 'Viewport meta tag missing'
+      };
+
+      results.robots = {
+        status: metaTags.robots ? 'success' : 'warning',
+        message: metaTags.robots || 'Robots meta tag missing'
+      };
+
+      // Open Graph Checks
+      results.ogTitle = {
+        status: metaTags.ogTitle ? 'success' : 'error',
+        message: metaTags.ogTitle ? `OG Title: ${metaTags.ogTitle}` : 'OG Title missing'
+      };
+
+      results.ogDescription = {
+        status: metaTags.ogDescription ? 'success' : 'error',
+        message: metaTags.ogDescription ? `OG Description: ${metaTags.ogDescription}` : 'OG Description missing'
+      };
+
+      results.ogImage = {
+        status: metaTags.ogImage ? 'success' : 'warning',
+        message: metaTags.ogImage ? `OG Image: ${metaTags.ogImage}` : 'OG Image missing'
+      };
+
+      results.canonical = {
+        status: metaTags.canonical ? 'success' : 'error',
+        message: metaTags.canonical ? `Canonical URL: ${metaTags.canonical}` : 'Canonical URL missing'
+      };
+
+      // Structured Data Checks
+      results.schema = {
+        status: metaTags.schema ? 'success' : 'warning',
+        message: metaTags.schema ? 'Structured data found' : 'Structured data missing'
+      };
+
+      results.breadcrumb = {
+        status: metaTags.breadcrumb ? 'success' : 'warning',
+        message: metaTags.breadcrumb ? 'Breadcrumb navigation found' : 'Breadcrumb navigation missing'
+      };
+
+      results.article = {
+        status: metaTags.article ? 'success' : 'warning',
+        message: metaTags.article ? 'Article structure found' : 'Article structure missing'
+      };
+
+      // Performance Optimization Checks
+      results.preload = {
+        status: metaTags.preload > 0 ? 'success' : 'warning',
+        message: `Preload resources: ${metaTags.preload}`
+      };
+
+      results.prefetch = {
+        status: metaTags.prefetch > 0 ? 'success' : 'warning',
+        message: `Prefetch resources: ${metaTags.prefetch}`
+      };
+
+      results.dnsPrefetch = {
+        status: metaTags.dnsPrefetch > 0 ? 'success' : 'warning',
+        message: `DNS prefetch: ${metaTags.dnsPrefetch}`
+      };
+
+      // Update UI
+      updateSEOResults(results);
+
+      return { metaTags, results, issues };
+    }
+
+    function updateSEOResults(results) {
+      const resultMap = {
+        'title-result': results.title,
+        'description-result': results.description,
+        'viewport-result': results.viewport,
+        'robots-result': results.robots,
+        'og-title-result': results.ogTitle,
+        'og-description-result': results.ogDescription,
+        'og-image-result': results.ogImage,
+        'canonical-result': results.canonical,
+        'schema-result': results.schema,
+        'breadcrumb-result': results.breadcrumb,
+        'article-result': results.article,
+        'preload-result': results.preload,
+        'prefetch-result': results.prefetch,
+        'dns-prefetch-result': results.dnsPrefetch
+      };
+
+      Object.entries(resultMap).forEach(([id, result]) => {
+        const element = document.getElementById(id);
+        if (element) {
+          element.innerHTML = `
+            <span class="tag-name">${id.replace(/-/g, ' ').replace(/result$/, '').replace(/\w+/g, (w) => w[0].toUpperCase() + w.substr(1))}</span>
+            <span class="status ${result.status}">${result.message}</span>
+          `;
+        }
+      });
+    }
+
+    // Initialize SEO testing
+    document.addEventListener('DOMContentLoaded', () => {
+      checkSEOMetaTags();
+    });
+
+    // Image Optimization Test
+    function analyzeImage() {
+      const image = document.getElementById('test-image');
+      const imageSize = document.getElementById('image-size');
+    }
     const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
     console.log('Dark mode preference:', prefersDarkScheme.matches);
   </script>
