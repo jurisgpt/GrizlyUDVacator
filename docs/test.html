@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en" class="h-100">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>GrizlyUDVacator Test Page</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <style>
+    :root {
+      --primary-color: #0077b5;
+      --secondary-color: #ffecb3;
+      --text-color: #444;
+      --background-color: #f9f9f9;
+      --card-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      line-height: 1.6;
+      color: var(--text-color);
+      background-color: var(--background-color);
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+    }
+
+    main {
+      padding: 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    .test-section {
+      margin: 2rem 0;
+      padding: 1.5rem;
+      background: var(--background-color);
+      border-radius: 0.5rem;
+      box-shadow: var(--card-shadow);
+    }
+
+    .test-section h2 {
+      color: var(--primary-color);
+      margin-bottom: 1rem;
+    }
+
+    .performance-test {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .button-test {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .dark-mode-test {
+      padding: 2rem;
+      background: #1a1a1a;
+      color: #e0e0e0;
+      border-radius: 0.5rem;
+      margin: 1rem 0;
+    }
+
+    .offline-test {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      padding: 2rem;
+      background: #fff;
+      border-radius: 0.5rem;
+      box-shadow: var(--card-shadow);
+    }
+
+    .test-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1.5rem;
+      background: linear-gradient(135deg, var(--primary-color) 0%, #005687 100%);
+      color: white;
+      border: none;
+      border-radius: 0.5rem;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.2s ease;
+      box-shadow: var(--card-shadow);
+    }
+
+    .test-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --text-color: #e0e0e0;
+        --background-color: #1a1a1a;
+      }
+
+      body {
+        background-color: var(--background-color);
+      }
+
+      .test-section {
+        background: #2d2d2d;
+      }
+
+      .offline-test {
+        background: #2d2d2d;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <section class="test-section">
+      <h2>Performance Test</h2>
+      <p>This section tests the performance optimizations:</p>
+      <div class="performance-test">
+        <img src="https://jurisgpt.github.io/GrizlyUDVacator/assets/graph-thumbnail.png" alt="Test image" loading="lazy" style="width: 300px; height: 200px; object-fit: cover;">
+        <p>Image loads lazily and should be optimized</p>
+      </div>
+    </section>
+
+    <section class="test-section">
+      <h2>Dark Mode Test</h2>
+      <div class="dark-mode-test">
+        <p>This section tests dark mode support:</p>
+        <p>Background should change based on system preferences</p>
+      </div>
+    </section>
+
+    <section class="test-section">
+      <h2>Button and Hover Test</h2>
+      <div class="button-test">
+        <button class="test-button">Test Button</button>
+        <button class="test-button">With Icon <i class="fas fa-check"></i></button>
+        <button class="test-button">Disabled</button>
+      </div>
+    </section>
+
+    <section class="test-section">
+      <h2>Responsive Test</h2>
+      <div class="offline-test">
+        <p>Resize your browser window to test responsive design:</p>
+        <p>Layout should adjust smoothly between different screen sizes</p>
+      </div>
+    </section>
+
+    <section class="test-section">
+      <h2>Accessibility Test</h2>
+      <p>Test keyboard navigation and screen reader support:</p>
+      <p>Try tabbing through elements and using screen reader</p>
+    </section>
+  </main>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/js/all.min.js"></script>
+  <script>
+    // Test service worker
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('/sw.js')
+        .then(registration => {
+          console.log('ServiceWorker registration successful');
+        })
+        .catch(err => {
+          console.log('ServiceWorker registration failed: ', err);
+        });
+    }
+
+    // Test offline functionality
+    window.addEventListener('offline', () => {
+      console.log('Offline mode detected');
+    });
+
+    // Test dark mode
+    const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+    console.log('Dark mode preference:', prefersDarkScheme.matches);
+  </script>
+</body>
+</html>
